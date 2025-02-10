@@ -23,9 +23,7 @@
 /// - -109 <= nums[i] <= 109
 /// - -109 <= target <= 109
 /// - 只會存在一個有效答案
-
 use std::collections::HashMap;
-use crate::utils::{measure_time_and_space, generate_test_data};
 
 pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
     let mut map = HashMap::with_capacity(nums.len());
@@ -46,6 +44,7 @@ pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::utils::{measure_time_and_space, generate_test_data};
 
     #[test]
     fn p0001_test_two_sum() {
@@ -65,7 +64,7 @@ mod tests {
             let target = size as i32 - 1; // 確保答案在數組的最後
             
             let (result, metrics) = measure_time_and_space(|| {
-                two_sum(nums, target)
+                two_sum(nums.clone(), target)
             });
             
             println!("Input size: {}", size);
