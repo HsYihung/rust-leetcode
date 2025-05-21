@@ -14,6 +14,7 @@
 // 有沒有辦法優化到 O(m + n) 空間？
 // 你可以只用常數空間（O(1)）完成這個問題嗎？
 
+#[allow(dead_code)]
 pub fn set_zeroes(matrix: &mut Vec<Vec<i32>>) {
     if matrix.is_empty() || matrix[0].is_empty() {
         return;

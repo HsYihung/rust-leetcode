@@ -22,6 +22,7 @@
 // s 僅由小寫英文字母和數字組成。
 // 輸入生成的情況下，可以刪除所有數字。
 
+#[allow(dead_code)]
 pub fn clear_digits(s: String) -> String {
     if s.len() == 0 {
         return s;

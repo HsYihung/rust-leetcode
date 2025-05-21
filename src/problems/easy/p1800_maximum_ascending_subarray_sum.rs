@@ -20,6 +20,7 @@
 /// 輸出：33
 /// 解釋：[10,11,12] 是一個升序子數組，其和為 33。
 
+#[allow(dead_code)]
 pub fn max_ascending_sum(nums: Vec<i32>) -> i32 {    
     if nums.is_empty() {
         return 0;

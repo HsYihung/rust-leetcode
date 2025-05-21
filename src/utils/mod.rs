@@ -1,11 +1,13 @@
 use std::time::{Duration, Instant};
 use std::mem;
 
+#[allow(dead_code)]
 pub struct Metrics {
     pub execution_time: Duration,
     pub memory_size: usize,
 }
 
+#[allow(dead_code)]
 pub fn measure_time_and_space<F, T>(f: F) -> (T, Metrics)
 where
     F: FnOnce() -> T,
@@ -23,6 +25,7 @@ where
     })
 }
 
+#[allow(dead_code)]
 pub fn generate_test_data(size: usize) -> Vec<i32> {
     (0..size as i32).collect()
 }

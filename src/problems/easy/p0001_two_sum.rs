@@ -25,6 +25,7 @@
 /// - 只會存在一個有效答案
 use std::collections::HashMap;
 
+#[allow(dead_code)]
 pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
     let mut map = HashMap::with_capacity(nums.len());
 
