@@ -15,6 +15,7 @@ src/
     │   ├── p1800_maximum_ascending_subarray_sum.rs
     │   └── p3174_clear_digits.rs
     ├── medium/
+    │   └── p73_set_matrix_zeroes.rs
     └── hard/
 ```
 
@@ -22,13 +23,15 @@ src/
 
 ### Easy
 | #    | 題目 | 解法 | 備註 |
-|------|------|------|------|
+|------|------|------|------|ㄋ
 | 1    | [Two Sum](src/problems/easy/p0001_two_sum.rs) | HashMap | O(n) 時間, O(n) 空間 |
 | 1800 | [Maximum Ascending Subarray Sum](src/problems/easy/p1800_maximum_ascending_subarray_sum.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
 | 3174 | [Clear Digits](src/problems/easy/p3174_clear_digits.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
 
 ### Medium
-*待新增*
+| #   | 題目 | 解法 | 備註 |
+|-----|------|------|------|
+| 73  | [Set Matrix Zeroes](src/problems/medium/p73_set_matrix_zeroes.rs) | 原地標記法 | O(m+n) 空間，O(1) 額外空間優化
 
 ### Hard
 *待新增*
@@ -78,3 +81,6 @@ println!("Memory: {} bytes", metrics.memory_size);
 
 ### Maximum Ascending Subarray Sum
 - 一次遍歷：O(n) 時間複雜度，不需要額外空間
+
+### Set Matrix Zeroes (p73)
+- 原地標記法：利用第一行與第一列作為標記區域，先標記需歸零的行與列，最後再處理第一行與第一列，實現 O(1) 額外空間。
