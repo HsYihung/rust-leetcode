@@ -22,9 +22,61 @@
 /// - nums.length == 4
 /// - 1 <= nums[i] <= 9
 
+const EPS: f64 = 1e-6;
+const TARGET: f64 = 24.0;
+
 #[allow(dead_code)]
 pub fn judge_point24(nums: Vec<i32>) -> bool {
-    todo!("實現 24 Game 的解決方案 - 請先理解題目和測試案例")
+    let mut cards: Vec<f64> = nums.iter().map(|&x| x as f64).collect();
+    backtrack(&mut cards)
+}
+
+fn backtrack(nums: &mut Vec<f64>) -> bool {
+    if nums.len() == 1 {
+        return (nums[0] - TARGET).abs() < EPS;
+    }
+    
+    let n = nums.len();
+    // 嘗試每一對數字
+    for i in 0..n {
+        for j in 0..n {
+            if i == j {
+                continue;
+            }
+            
+            let a = nums[i];
+            let b = nums[j];
+            
+            // 移除這兩個數字，創建新的數組
+            let mut new_nums = Vec::new();
+            for (k, &value) in nums.iter().enumerate() {
+                if k != i && k != j {
+                    new_nums.push(value);
+                }
+            }
+            
+            // 嘗試四種運算
+            let operations = [a + b, a - b, a * b];
+            for op in operations {
+                new_nums.push(op);
+                if backtrack(&mut new_nums) {
+                    return true;
+                }
+                new_nums.pop();
+            }
+            
+            // 除法需要檢查分母不為0
+            if b.abs() > EPS {
+                new_nums.push(a / b);
+                if backtrack(&mut new_nums) {
+                    return true;
+                }
+                new_nums.pop();
+            }
+        }
+    }
+    
+    false
 }
 
 #[cfg(test)]
