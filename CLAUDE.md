@@ -64,6 +64,19 @@ When user is working on implementing solutions:
 - **解答**: Provide complete, well-commented solution implementation with detailed explanation of the approach
 - **Big O**: Analyze and explain time/space complexity of the problem or current solution, including best/average/worst case scenarios
 
+## Commit Rules
+**IMPORTANT**: Before every commit:
+- **MUST** update README.md to reflect current project status
+- **MUST** include newly added problems in the README problem list
+- **MUST** update problem counts and statistics
+- **MUST** maintain consistent formatting in the README
+- The README should always be current and comprehensive
+
+### README Solution Techniques Section Rules:
+- **If algorithm is completed**: Include detailed solution explanation and approach
+- **If algorithm is incomplete/uses todo!()**: Mark as "待實現" and DO NOT include solution details
+- Keep the section clean and only document actually implemented solutions
+
 ## Project Structure
 - `src/` - Source code directory
 - `Cargo.toml` - Project dependencies and metadata

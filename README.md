@@ -17,6 +17,7 @@ src/
     ├── medium/
     │   └── p73_set_matrix_zeroes.rs
     └── hard/
+        └── p679_24_game.rs
 ```
 
 ## 題目列表
@@ -34,7 +35,17 @@ src/
 | 73  | [Set Matrix Zeroes](src/problems/medium/p73_set_matrix_zeroes.rs) | 原地標記法 | O(m+n) 空間，O(1) 額外空間優化
 
 ### Hard
-*待新增*
+| #   | 題目 | 解法 | 備註 |
+|-----|------|------|------|
+| 679 | [24 Game](src/problems/hard/p679_24_game.rs) | 待實現 | 🚧 使用todo!()佔位符 |
+
+## 統計
+- **總題目數**: 5
+- **Easy**: 3 題
+- **Medium**: 1 題  
+- **Hard**: 1 題
+- **已完成**: 4 題
+- **待實現**: 1 題 (P679)
 
 ## 執行測試
 
@@ -54,6 +65,17 @@ cargo test p0001_test_performance -- --ignored --nocapture
 
 # 運行所有測試（包含一般測試和性能測試）
 cargo test -- --include-ignored
+```
+
+## 新增題目
+
+使用腳本快速生成題目模板：
+```bash
+./scripts/add_problem.sh <number> "<title>" <difficulty>
+
+# 範例
+./scripts/add_problem.sh 1 "Two Sum" easy
+./scripts/add_problem.sh 42 "Trapping Rain Water" hard
 ```
 
 ## 性能測試框架
@@ -84,3 +106,6 @@ println!("Memory: {} bytes", metrics.memory_size);
 
 ### Set Matrix Zeroes (p73)
 - 原地標記法：利用第一行與第一列作為標記區域，先標記需歸零的行與列，最後再處理第一行與第一列，實現 O(1) 額外空間。
+
+### 24 Game (p679)
+- **狀態**: 🚧 待實現
