@@ -15,7 +15,7 @@
 // 你可以只用常數空間（O(1)）完成這個問題嗎？
 
 #[allow(dead_code)]
-pub fn set_zeroes(matrix: &mut Vec<Vec<i32>>) {
+pub fn set_zeroes(matrix: &mut [Vec<i32>]) {
     if matrix.is_empty() || matrix[0].is_empty() {
         return;
     }
@@ -30,8 +30,8 @@ pub fn set_zeroes(matrix: &mut Vec<Vec<i32>>) {
             break;
         }
     }
-    for i in 0..m {
-        if matrix[i][0] == 0 {
+    for row in matrix.iter().take(m) {
+        if row[0] == 0 {
             col_zero = true;
             break;
         }
@@ -57,8 +57,8 @@ pub fn set_zeroes(matrix: &mut Vec<Vec<i32>>) {
         }
     }
     if col_zero {
-        for i in 0..m {
-            matrix[i][0] = 0;
+        for row in matrix.iter_mut().take(m) {
+            row[0] = 0;
         }
     }
 }

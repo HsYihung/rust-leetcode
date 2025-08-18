@@ -24,7 +24,7 @@
 
 #[allow(dead_code)]
 pub fn clear_digits(s: String) -> String {
-    if s.len() == 0 {
+    if s.is_empty() {
         return s;
     }
 
@@ -32,7 +32,7 @@ pub fn clear_digits(s: String) -> String {
     let mut i: usize = 0;
 
     while i < chars.len() {
-        if chars[i].is_digit(10) {
+        if chars[i].is_ascii_digit() {
             if i > 0 {
                 // 回退一个字符
                 i -= 1;
