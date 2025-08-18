@@ -1,5 +1,5 @@
-use std::time::{Duration, Instant};
 use std::mem;
+use std::time::{Duration, Instant};
 
 #[allow(dead_code)]
 pub struct Metrics {
@@ -16,13 +16,15 @@ where
     let result = f();
     let duration = start.elapsed();
 
-    
     let size = mem::size_of_val(&result);
 
-    (result, Metrics {
-        execution_time: duration,
-        memory_size: size,
-    })
+    (
+        result,
+        Metrics {
+            execution_time: duration,
+            memory_size: size,
+        },
+    )
 }
 
 #[allow(dead_code)]

@@ -72,15 +72,18 @@ mod tests {
         // 範例 1
         // 輸入: [[1,1,1],[1,0,1],[1,1,1]]
         // 輸出: [[1,0,1],[0,0,0],[1,0,1]]
-        let mut mat = vec![vec![1,1,1], vec![1,0,1], vec![1,1,1]];
+        let mut mat = vec![vec![1, 1, 1], vec![1, 0, 1], vec![1, 1, 1]];
         set_zeroes(&mut mat);
-        assert_eq!(mat, vec![vec![1,0,1], vec![0,0,0], vec![1,0,1]]);
+        assert_eq!(mat, vec![vec![1, 0, 1], vec![0, 0, 0], vec![1, 0, 1]]);
 
         // 範例 2
         // 輸入: [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
         // 輸出: [[0,0,0,0],[0,4,5,0],[0,3,1,0]]
-        let mut mat2 = vec![vec![0,1,2,0], vec![3,4,5,2], vec![1,3,1,5]];
+        let mut mat2 = vec![vec![0, 1, 2, 0], vec![3, 4, 5, 2], vec![1, 3, 1, 5]];
         set_zeroes(&mut mat2);
-        assert_eq!(mat2, vec![vec![0,0,0,0], vec![0,4,5,0], vec![0,3,1,0]]);
+        assert_eq!(
+            mat2,
+            vec![vec![0, 0, 0, 0], vec![0, 4, 5, 0], vec![0, 3, 1, 0]]
+        );
     }
 }

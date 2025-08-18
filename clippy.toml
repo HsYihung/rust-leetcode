@@ -1,0 +1,24 @@
+# Clippy 配置文件
+# 用於配置 Rust linter 的行為和規則
+
+# 認知複雜度閾值
+cognitive-complexity-threshold = 30
+
+# 類型複雜度閾值
+type-complexity-threshold = 250
+
+# 單個函數最大行數
+too-many-lines-threshold = 100
+
+# 結構體字段數量閾值
+too-many-arguments-threshold = 7
+
+# 枚举变体数量閾值
+enum-variant-size-threshold = 200
+
+# 向量初始化閾值
+vec-box-size-threshold = 4096
+
+# 避免過度嚴格的規則（允許的 clippy 警告）
+# 這些規則在某些情況下可能過於嚴格
+avoid-breaking-exported-api = false

@@ -1,0 +1,27 @@
+# Rust 程式碼風格配置
+# 基於 Rust 官方風格指南和社群最佳實踐
+# 只包含穩定版本支持的配置選項
+
+# 基本格式設定
+max_width = 100
+hard_tabs = false
+tab_spaces = 4
+
+# 導入排序
+reorder_imports = true
+
+# 函數和結構體格式
+fn_params_layout = "Tall"
+
+# 鏈式調用
+chain_width = 60
+single_line_if_else_max_width = 50
+
+# 匹配表達式格式
+match_block_trailing_comma = false
+
+# 其他穩定設定
+edition = "2021"
+merge_derives = true
+use_field_init_shorthand = true
+force_explicit_abi = true
