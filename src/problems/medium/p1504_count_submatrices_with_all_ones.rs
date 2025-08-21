@@ -46,12 +46,10 @@ pub fn num_submat(mat: Vec<Vec<i32>>) -> i32 {
     let mut result = 0;
 
     for i in 0..n {
-        // 更新高度數組
         for j in 0..m {
             heights[j] = if mat[i][j] == 1 { heights[j] + 1 } else { 0 };
         }
 
-        // 對當前高度數組計算子矩陣數量
         result += count_submatrices_in_histogram(&heights);
     }
 
