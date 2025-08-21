@@ -1,2 +1,3 @@
 pub mod p3362_zero_array_transformation_iii;
 pub mod p73_set_matrix_zeroes;
+pub mod p1504_count_submatrices_with_all_ones;
