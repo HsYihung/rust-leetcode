@@ -64,7 +64,7 @@ fn count_submatrices_in_histogram(heights: &[i32]) -> i32 {
         if heights[i] == 0 {
             continue;
         }
-        
+
         let mut min_height = heights[i];
         for j in i..n {
             min_height = std::cmp::min(min_height, heights[j]);
