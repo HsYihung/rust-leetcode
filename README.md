@@ -34,7 +34,7 @@ src/
 | #   | 題目 | 解法 | 備註 |
 |-----|------|------|------|
 | 73  | [Set Matrix Zeroes](src/problems/medium/p73_set_matrix_zeroes.rs) | 原地標記法 | O(m+n) 空間，O(1) 額外空間優化
-| 1504 | [Count Submatrices With All Ones](src/problems/medium/p1504_count_submatrices_with_all_ones.rs) | 動態規劃 + 寬度預計算 | O(n²m) 時間, O(nm) 空間
+| 1504 | [Count Submatrices With All Ones](src/problems/medium/p1504_count_submatrices_with_all_ones.rs) | 單調棧 + 直方圖算法 | O(nm) 時間, O(m) 空間
 
 ### Hard
 | #   | 題目 | 解法 | 備註 |
