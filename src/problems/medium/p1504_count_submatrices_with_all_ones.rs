@@ -59,23 +59,22 @@ pub fn num_submat(mat: Vec<Vec<i32>>) -> i32 {
 }
 
 fn count_submatrices_in_histogram(heights: &[i32]) -> i32 {
-    let mut stack = Vec::new();
     let mut result = 0;
     let n = heights.len();
 
-    for i in 0..=n {
-        let h = if i == n { 0 } else { heights[i] };
-
-        while !stack.is_empty() && heights[stack[stack.len() - 1]] > h {
-            let height = heights[stack.pop().unwrap()];
-            let width = if stack.is_empty() {
-                i
-            } else {
-                i - stack[stack.len() - 1] - 1
-            };
-            result += height * width as i32;
+    for i in 0..n {
+        if heights[i] == 0 {
+            continue;
         }
-        stack.push(i);
+        
+        let mut min_height = heights[i];
+        for j in i..n {
+            min_height = std::cmp::min(min_height, heights[j]);
+            if min_height == 0 {
+                break;
+            }
+            result += min_height;
+        }
     }
 
     result
