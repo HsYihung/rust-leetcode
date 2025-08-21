@@ -15,6 +15,7 @@ src/
     │   ├── p1800_maximum_ascending_subarray_sum.rs
     │   └── p3174_clear_digits.rs
     ├── medium/
+    │   ├── p8_string_to_integer_atoi_.rs
     │   ├── p73_set_matrix_zeroes.rs
     │   └── p1504_count_submatrices_with_all_ones.rs
     └── hard/
@@ -33,6 +34,7 @@ src/
 ### Medium
 | #   | 題目 | 解法 | 備註 |
 |-----|------|------|------|
+| 8   | [String to Integer (atoi)](src/problems/medium/p8_string_to_integer_atoi_.rs) | 字符串解析 + 溢出檢查 | O(n) 時間, O(1) 空間
 | 73  | [Set Matrix Zeroes](src/problems/medium/p73_set_matrix_zeroes.rs) | 原地標記法 | O(m+n) 空間，O(1) 額外空間優化
 | 1504 | [Count Submatrices With All Ones](src/problems/medium/p1504_count_submatrices_with_all_ones.rs) | 高度數組 + 直方圖遍歷 | O(nm²) 時間, O(m) 空間
 
@@ -42,11 +44,11 @@ src/
 | 679 | [24 Game](src/problems/hard/p679_24_game.rs) | 回溯算法 | O(4^4 * 4!) 時間複雜度 |
 
 ## 統計
-- **總題目數**: 6
+- **總題目數**: 7
 - **Easy**: 3 題
-- **Medium**: 2 題  
+- **Medium**: 3 題  
 - **Hard**: 1 題
-- **已完成**: 6 題
+- **已完成**: 7 題
 - **待實現**: 0 題
 
 ## 執行測試
@@ -108,6 +110,12 @@ println!("Memory: {} bytes", metrics.memory_size);
 
 ### Set Matrix Zeroes (p73)
 - 原地標記法：利用第一行與第一列作為標記區域，先標記需歸零的行與列，最後再處理第一行與第一列，實現 O(1) 額外空間。
+
+### String to Integer (atoi) (p8)
+- 字符串解析：依序處理前導空格、符號、數字字符
+- 溢出檢查：在累加每一位前檢查是否會超出 i32 範圍，提前返回邊界值
+- 處理極端情況：支持 200+ 位數字字符的正確處理
+- 時間複雜度：O(n)，空間複雜度：O(1)
 
 ### 24 Game (p679)
 - 回溯算法：每次選擇兩個數字進行四則運算，將結果放回繼續遞歸，直到只剩一個數字檢查是否等於24
