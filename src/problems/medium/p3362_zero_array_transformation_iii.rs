@@ -37,6 +37,9 @@
 #[allow(dead_code)]
 pub fn max_removal(nums: Vec<i32>, mut queries: Vec<Vec<i32>>) -> i32 {
     use std::collections::BinaryHeap;
+
+    // 測試完成，移除故意引入的警告
+
     queries.sort_by(|a, b| a[0].cmp(&b[0]));
     let mut heap = BinaryHeap::new();
     let mut delta_array = vec![0; nums.len() + 1];
