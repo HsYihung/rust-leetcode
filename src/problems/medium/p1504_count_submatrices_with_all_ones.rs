@@ -33,7 +33,6 @@
 /// 限制條件：
 /// - 1 <= m, n <= 150
 /// - mat[i][j] 只能是 0 或 1
-
 #[allow(dead_code)]
 pub fn num_submat(mat: Vec<Vec<i32>>) -> i32 {
     if mat.is_empty() || mat[0].is_empty() {
@@ -45,9 +44,9 @@ pub fn num_submat(mat: Vec<Vec<i32>>) -> i32 {
     let mut heights = vec![0; m];
     let mut result = 0;
 
-    for i in 0..n {
-        for j in 0..m {
-            heights[j] = if mat[i][j] == 1 { heights[j] + 1 } else { 0 };
+    for row in mat.iter().take(n) {
+        for (j, &cell) in row.iter().enumerate().take(m) {
+            heights[j] = if cell == 1 { heights[j] + 1 } else { 0 };
         }
 
         result += count_submatrices_in_histogram(&heights);
@@ -66,8 +65,8 @@ fn count_submatrices_in_histogram(heights: &[i32]) -> i32 {
         }
 
         let mut min_height = heights[i];
-        for j in i..n {
-            min_height = std::cmp::min(min_height, heights[j]);
+        for &height in heights.iter().skip(i) {
+            min_height = std::cmp::min(min_height, height);
             if min_height == 0 {
                 break;
             }

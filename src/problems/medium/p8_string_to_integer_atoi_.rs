@@ -39,7 +39,6 @@
 /// 限制條件：
 /// - 0 <= s.length <= 200
 /// - s 由英文字母（大小寫）、數字（0-9）、' '、'+'、'-' 和 '.' 組成
-
 #[allow(dead_code)]
 pub fn my_atoi(s: String) -> i32 {
     let s = s.trim_start();

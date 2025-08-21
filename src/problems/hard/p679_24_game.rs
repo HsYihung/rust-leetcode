@@ -21,7 +21,6 @@
 /// 限制條件：
 /// - nums.length == 4
 /// - 1 <= nums[i] <= 9
-
 const EPS: f64 = 1e-6;
 const TARGET: f64 = 24.0;
 
@@ -31,7 +30,7 @@ pub fn judge_point24(nums: Vec<i32>) -> bool {
     backtrack(&mut cards)
 }
 
-fn backtrack(nums: &mut Vec<f64>) -> bool {
+fn backtrack(nums: &mut [f64]) -> bool {
     if nums.len() == 1 {
         return (nums[0] - TARGET).abs() < EPS;
     }
