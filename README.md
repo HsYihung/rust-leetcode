@@ -17,7 +17,8 @@ src/
     ├── medium/
     │   ├── p8_string_to_integer_atoi_.rs
     │   ├── p73_set_matrix_zeroes.rs
-    │   └── p1504_count_submatrices_with_all_ones.rs
+    │   ├── p1504_count_submatrices_with_all_ones.rs
+    │   └── p3195_find_the_minimum_area_to_cover_all_ones_i.rs
     └── hard/
         └── p679_24_game.rs
 ```
@@ -37,6 +38,7 @@ src/
 | 8   | [String to Integer (atoi)](src/problems/medium/p8_string_to_integer_atoi_.rs) | 字符串解析 + 溢出檢查 | O(n) 時間, O(1) 空間
 | 73  | [Set Matrix Zeroes](src/problems/medium/p73_set_matrix_zeroes.rs) | 原地標記法 | O(m+n) 空間，O(1) 額外空間優化
 | 1504 | [Count Submatrices With All Ones](src/problems/medium/p1504_count_submatrices_with_all_ones.rs) | 高度數組 + 直方圖遍歷 | O(nm²) 時間, O(m) 空間
+| 3195 | [Find the Minimum Area to Cover All Ones I](src/problems/medium/p3195_find_the_minimum_area_to_cover_all_ones_i.rs) | 邊界框算法 | O(mn) 時間, O(1) 空間
 
 ### Hard
 | #   | 題目 | 解法 | 備註 |
@@ -44,11 +46,11 @@ src/
 | 679 | [24 Game](src/problems/hard/p679_24_game.rs) | 回溯算法 | O(4^4 * 4!) 時間複雜度 |
 
 ## 統計
-- **總題目數**: 7
+- **總題目數**: 8
 - **Easy**: 3 題
-- **Medium**: 3 題  
+- **Medium**: 4 題  
 - **Hard**: 1 題
-- **已完成**: 7 題
+- **已完成**: 8 題
 - **待實現**: 0 題
 
 ## 執行測試
@@ -122,3 +124,9 @@ println!("Memory: {} bytes", metrics.memory_size);
 - 處理浮點精度問題使用 `EPS = 1e-6` 進行比較
 - 除法運算前檢查分母不為0，避免除零錯誤
 - 時間複雜度：O(4^4 * 4!)，空間複雜度：O(4)（遞歸深度）
+
+### Find the Minimum Area to Cover All Ones I (p3195)
+- 邊界框算法：遍歷矩陣找到所有 1 的最小/最大行列索引，計算包圍矩形面積
+- 使用四個變量追踪邊界：min_row, max_row, min_col, max_col
+- 面積計算：(max_row - min_row + 1) × (max_col - min_col + 1)
+- 時間複雜度：O(mn)（必須遍歷整個矩陣），空間複雜度：O(1)

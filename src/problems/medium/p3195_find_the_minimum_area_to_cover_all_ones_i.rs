@@ -28,8 +28,31 @@
 /// - grid[i][j] 只能是 0 或 1
 /// - 輸入保證 grid 中至少有一個 1
 #[allow(dead_code)]
-pub fn minimum_area(_grid: Vec<Vec<i32>>) -> i32 {
-    todo!("實現 Find the Minimum Area to Cover All Ones I 的解決方案 - 請先理解題目和測試案例")
+pub fn minimum_area(grid: Vec<Vec<i32>>) -> i32 {
+    let m = grid.len();
+    let n = grid[0].len();
+
+    let mut min_row = m;
+    let mut max_row = 0;
+    let mut min_col = n;
+    let mut max_col = 0;
+
+    // 優化版本：使用 enumerate 和 iterator
+    for (i, row) in grid.iter().enumerate() {
+        for (j, &cell) in row.iter().enumerate() {
+            if cell == 1 {
+                min_row = min_row.min(i);
+                max_row = max_row.max(i);
+                min_col = min_col.min(j);
+                max_col = max_col.max(j);
+            }
+        }
+    }
+
+    let height = max_row - min_row + 1;
+    let width = max_col - min_col + 1;
+
+    (height * width) as i32
 }
 
 #[cfg(test)]
