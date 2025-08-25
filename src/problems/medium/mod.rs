@@ -1,5 +1,6 @@
 pub mod p1504_count_submatrices_with_all_ones;
 pub mod p3195_find_the_minimum_area_to_cover_all_ones_i;
 pub mod p3362_zero_array_transformation_iii;
+pub mod p498_diagonal_traverse;
 pub mod p73_set_matrix_zeroes;
 pub mod p8_string_to_integer_atoi_;
