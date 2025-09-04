@@ -12,6 +12,7 @@ src/
 └── problems/
     ├── easy/
     │   ├── p0001_two_sum.rs
+    │   ├── p392_is_subsequence.rs
     │   ├── p509_fibonacci_number.rs
     │   ├── p1800_maximum_ascending_subarray_sum.rs
     │   ├── p3174_clear_digits.rs
@@ -32,6 +33,7 @@ src/
 | #    | 題目 | 解法 | 備註 |
 |------|------|------|------|
 | 1    | [Two Sum](src/problems/easy/p0001_two_sum.rs) | HashMap | O(n) 時間, O(n) 空間 |
+| 392  | [Is Subsequence](src/problems/easy/p392_is_subsequence.rs) | 待實現 | - |
 | 509  | [Fibonacci Number](src/problems/easy/p509_fibonacci_number.rs) | 矩陣快速冪 | O(log n) 時間, O(1) 空間 |
 | 1800 | [Maximum Ascending Subarray Sum](src/problems/easy/p1800_maximum_ascending_subarray_sum.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
 | 3174 | [Clear Digits](src/problems/easy/p3174_clear_digits.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
@@ -52,12 +54,12 @@ src/
 | 679 | [24 Game](src/problems/hard/p679_24_game.rs) | 回溯算法 | O(4^4 * 4!) 時間複雜度 |
 
 ## 統計
-- **總題目數**: 11
-- **Easy**: 5 題
+- **總題目數**: 12
+- **Easy**: 6 題
 - **Medium**: 5 題  
 - **Hard**: 1 題
 - **已完成**: 11 題
-- **待實現**: 0 題
+- **待實現**: 1 題
 
 ## 執行測試
 
