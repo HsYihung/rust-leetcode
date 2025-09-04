@@ -12,12 +12,6 @@ This is a Rust project for LeetCode problem solutions.
 - Format: `cargo fmt`
 - Lint: `cargo clippy`
 
-## Problem Solving Commands
-Use these keywords to get specific help:
-- **解題參考** - Get algorithmic hints, approaches, and problem-solving strategies
-- **解答** - Get complete solution implementation with explanation
-- **Big O** - Analyze time and space complexity of current problem or solution
-
 ## Adding New Problems
 Use the script to add new LeetCode problems:
 ```bash
@@ -59,10 +53,19 @@ When user is working on implementing solutions:
 - **DO** help optimize existing implementations
 - Only provide direct code when explicitly requested or when user is stuck
 
-### Command Behaviors:
-- **解題參考**: Provide problem-solving approach, algorithm hints, data structure suggestions, and step-by-step thinking process WITHOUT giving away the complete solution
-- **解答**: Provide complete, well-commented solution implementation with detailed explanation of the approach
-- **Big O**: Analyze and explain time/space complexity of the problem or current solution, including best/average/worst case scenarios
+## Custom Commands
+Use these custom Claude Code commands for problem solving:
+
+### Problem Setup Command
+- **/leetcode --problem \<number\>**: Automatically fetch LeetCode problem info and create template with Chinese description
+
+### Problem Solving Commands  
+- **/hints**: Provide problem-solving approach, algorithm hints, data structure suggestions, and step-by-step thinking process WITHOUT giving away the complete solution
+- **/solution**: Provide complete, well-commented solution implementation with detailed explanation of the approach
+- **/big-o**: Analyze and explain time/space complexity of the problem or current solution, including best/average/worst case scenarios
+
+### Solution Submission Command
+- **/submit**: Complete solution submission workflow - runs tests, formats code, checks with clippy, updates README.md, and commits changes
 
 ## Commit Rules
 **IMPORTANT**: Before every commit:
