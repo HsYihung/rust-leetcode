@@ -37,8 +37,25 @@
 /// 限制條件：
 /// - 1 <= x, y, z <= 100
 #[allow(dead_code)]
-pub fn find_closest_person(_x: i32, _y: i32, _z: i32) -> i32 {
-    todo!("實現 Find Closest Person 的解決方案 - 請先理解題目和測試案例")
+pub fn find_closest_person(x: i32, y: i32, z: i32) -> i32 {
+    let n1 = absolute(z - x);
+    let n2 = absolute(z - y);
+
+    if n1 < n2 {
+        1
+    } else if n2 < n1 {
+        2
+    } else {
+        0
+    }
+}
+
+pub fn absolute(n: i32) -> i32 {
+    if n >= 0 {
+        n
+    } else {
+        -n
+    }
 }
 
 #[cfg(test)]
@@ -51,7 +68,7 @@ mod tests {
         assert_eq!(find_closest_person(1, 2, 3), 2); // 示例 1：第二個人更接近
         assert_eq!(find_closest_person(1, 5, 3), 0); // 示例 2：兩人距離相等
         assert_eq!(find_closest_person(5, 2, 3), 2); // 示例 3：第二個人更接近
-        assert_eq!(find_closest_person(1, 4, 3), 1); // 第一個人更接近
+        assert_eq!(find_closest_person(1, 4, 3), 2); // 第二個人更接近 (距離1 vs 2)
     }
 
     #[test]

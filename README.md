@@ -33,7 +33,7 @@ src/
 | 1    | [Two Sum](src/problems/easy/p0001_two_sum.rs) | HashMap | O(n) 時間, O(n) 空間 |
 | 1800 | [Maximum Ascending Subarray Sum](src/problems/easy/p1800_maximum_ascending_subarray_sum.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
 | 3174 | [Clear Digits](src/problems/easy/p3174_clear_digits.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
-| 3516 | [Find Closest Person](src/problems/easy/p3516_find_closest_person.rs) | 待實現 | 比較絕對距離 |
+| 3516 | [Find Closest Person](src/problems/easy/p3516_find_closest_person.rs) | 距離比較 | O(1) 時間, O(1) 空間 |
 
 ### Medium
 | #   | 題目 | 解法 | 備註 |
@@ -54,8 +54,8 @@ src/
 - **Easy**: 4 題
 - **Medium**: 5 題  
 - **Hard**: 1 題
-- **已完成**: 9 題
-- **待實現**: 1 題
+- **已完成**: 10 題
+- **待實現**: 0 題
 
 ## 執行測試
 
@@ -140,3 +140,9 @@ println!("Memory: {} bytes", metrics.memory_size);
 - 使用四個變量追踪邊界：min_row, max_row, min_col, max_col
 - 面積計算：(max_row - min_row + 1) × (max_col - min_col + 1)
 - 時間複雜度：O(mn)（必須遍歷整個矩陣），空間複雜度：O(1)
+
+### Find Closest Person (p3516)
+- 距離比較算法：計算兩個人到目標位置的絕對距離，比較大小決定誰更接近
+- 使用自定義絕對值函數處理距離計算：`absolute(z - x)` 和 `absolute(z - y)`
+- 三種返回情況：第一個人更接近返回1，第二個人更接近返回2，距離相等返回0
+- 時間複雜度：O(1)（固定的比較和計算操作），空間複雜度：O(1)（只使用常數額外變量）
