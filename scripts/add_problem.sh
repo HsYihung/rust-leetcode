@@ -59,14 +59,12 @@ cat > "$PROBLEM_FILE" << EOF
 /// - [限制條件 2]
 /// - [其他相關限制]
 
-// LeetCode 提交格式
 impl Solution {
     pub fn solution() {
         todo!("實現 ${PROBLEM_TITLE} 的解決方案 - 請先理解題目和測試案例")
     }
 }
 
-// 測試用的 Solution 結構體
 #[allow(dead_code)]
 struct Solution;
 
