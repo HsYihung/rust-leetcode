@@ -28,8 +28,32 @@
 /// - 題目數據保證答案將小於等於 2 * 10^9
 #[allow(dead_code)]
 impl Solution {
-    pub fn unique_paths_with_obstacles(_obstacle_grid: Vec<Vec<i32>>) -> i32 {
-        todo!("實現 Unique Paths II 的解決方案 - 請先理解題目和測試案例")
+    pub fn unique_paths_with_obstacles(obstacle_grid: Vec<Vec<i32>>) -> i32 {
+        let mut paths = vec![vec![0; obstacle_grid[0].len()]; obstacle_grid.len()];
+
+        if obstacle_grid[0][0] == 1 {
+            return 0;
+        }
+
+        for i in 0..paths.len() {
+            for j in 0..paths[i].len() {
+                if i == 0 && j == 0 {
+                    paths[i][j] = 1;
+                    continue;
+                }
+
+                if obstacle_grid[i][j] == 1 {
+                    paths[i][j] = 0;
+                    continue;
+                }
+
+                let top = if i == 0 { 0 } else { paths[i - 1][j] };
+                let left = if j == 0 { 0 } else { paths[i][j - 1] };
+                paths[i][j] = top + left;
+            }
+        }
+
+        paths[paths.len() - 1][paths[0].len() - 1]
     }
 }
 
@@ -69,7 +93,7 @@ mod tests {
                 vec![0, 1, 0, 0],
                 vec![0, 0, 0, 0]
             ]),
-            7
+            4
         );
     }
 
@@ -145,7 +169,7 @@ mod tests {
                 vec![1, 0, 1, 0],
                 vec![0, 0, 0, 0]
             ]),
-            3
+            4
         );
 
         // 邊界全是障礙物
@@ -165,7 +189,7 @@ mod tests {
                 vec![1, 0, 1],
                 vec![1, 1, 0]
             ]),
-            1
+            0
         );
 
         // 較大的網格測試
@@ -177,7 +201,7 @@ mod tests {
                 vec![0, 0, 1, 1, 0],
                 vec![0, 0, 0, 0, 0]
             ]),
-            8
+            7
         );
     }
 }

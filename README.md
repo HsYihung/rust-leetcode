@@ -48,7 +48,7 @@ src/
 |-----|------|------|------|
 | 8   | [String to Integer (atoi)](src/problems/medium/p8_string_to_integer_atoi_.rs) | 字符串解析 + 溢出檢查 | O(n) 時間, O(1) 空間
 | 62  | [Unique Paths](src/problems/medium/p62_unique_paths.rs) | 組合數學 | O(min(m,n)) 時間, O(1) 空間 |
-| 63  | [Unique Paths II](src/problems/medium/p63_unique_paths_ii.rs) | 待實現 | - |
+| 63  | [Unique Paths II](src/problems/medium/p63_unique_paths_ii.rs) | 動態規劃 | O(mn) 時間, O(mn) 空間 |
 | 73  | [Set Matrix Zeroes](src/problems/medium/p73_set_matrix_zeroes.rs) | 原地標記法 | O(m+n) 空間，O(1) 額外空間優化
 | 498 | [Diagonal Traverse](src/problems/medium/p498_diagonal_traverse.rs) | 模擬對角線遍歷 | O(mn) 時間, O(mn) 空間
 | 1504 | [Count Submatrices With All Ones](src/problems/medium/p1504_count_submatrices_with_all_ones.rs) | 高度數組 + 直方圖遍歷 | O(nm²) 時間, O(m) 空間
@@ -66,8 +66,8 @@ src/
 * **Easy**: 6 題
 * **Medium**: 7 題  
 * **Hard**: 1 題
-* **已完成**: 13 題
-* **待實現**: 1 題
+* **已完成**: 14 題
+* **待實現**: 0 題
 
 ## 執行測試
 
@@ -193,3 +193,12 @@ println!("Memory: {} bytes", metrics.memory_size);
 * 溢出處理：使用 u64 進行中間計算，避免 i32 溢出問題
 * 邊界條件：當 m 或 n 為 1 時直接返回 1
 * 時間複雜度：O(min(m,n))（組合數計算），空間複雜度：O(1)（常數空間）
+
+### Unique Paths II (p63)
+
+* 動態規劃算法：使用二維 DP 表格存儲每個位置的路徑數量，處理障礙物約束
+* 障礙物處理：當格子為障礙物 (1) 時，路徑數設為 0；否則為上方和左方路徑數之和
+* 邊界條件處理：起始位置為障礙物時直接返回 0，邊界位置正確處理 if-else 表達式
+* 狀態轉移方程：`paths[i][j] = top + left`（其中 top 和 left 考慮邊界情況）
+* 初始化策略：創建與輸入相同大小的 DP 表格，起始位置 (0,0) 設為 1
+* 時間複雜度：O(m×n)（遍歷所有格子），空間複雜度：O(m×n)（DP 表格存儲）
