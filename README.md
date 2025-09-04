@@ -33,7 +33,7 @@ src/
 | #    | 題目 | 解法 | 備註 |
 |------|------|------|------|
 | 1    | [Two Sum](src/problems/easy/p0001_two_sum.rs) | HashMap | O(n) 時間, O(n) 空間 |
-| 392  | [Is Subsequence](src/problems/easy/p392_is_subsequence.rs) | 待實現 | - |
+| 392  | [Is Subsequence](src/problems/easy/p392_is_subsequence.rs) | 雙指針 | O(n+m) 時間, O(1) 空間 |
 | 509  | [Fibonacci Number](src/problems/easy/p509_fibonacci_number.rs) | 矩陣快速冪 | O(log n) 時間, O(1) 空間 |
 | 1800 | [Maximum Ascending Subarray Sum](src/problems/easy/p1800_maximum_ascending_subarray_sum.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
 | 3174 | [Clear Digits](src/problems/easy/p3174_clear_digits.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
@@ -58,8 +58,8 @@ src/
 - **Easy**: 6 題
 - **Medium**: 5 題  
 - **Hard**: 1 題
-- **已完成**: 11 題
-- **待實現**: 1 題
+- **已完成**: 12 題
+- **待實現**: 0 題
 
 ## 執行測試
 
@@ -156,3 +156,9 @@ println!("Memory: {} bytes", metrics.memory_size);
 - 使用快速冪技術將矩陣乘法優化到對數級別，基於二進制分解：`M^n = M^(2^k1) × M^(2^k2) × ...`
 - 核心矩陣：`[[1,1],[1,0]]`，通過矩陣乘法規則計算任意次冪
 - 時間複雜度：O(log n)（快速冪需要log₂(n)次矩陣乘法），空間複雜度：O(1)（固定大小矩陣操作）
+
+### Is Subsequence (p392)
+- 雙指針算法：使用兩個指針分別追蹤 s 和 t 字符串的位置，當字符匹配時同時移動指針
+- 提前終止優化：添加邊界檢查，空字符串直接返回 true，s 比 t 長直接返回 false
+- 字符訪問：將字符串轉換為字符向量，支持高效的隨機訪問和比較
+- 時間複雜度：O(n+m)（n 為 s 長度，m 為 t 長度），空間複雜度：O(n+m)（字符向量存儲）

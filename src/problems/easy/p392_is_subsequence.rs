@@ -31,8 +31,29 @@
 /// 你需要依次檢查它們是否為 T 的子序列。在這種情況下，你會怎樣改變代碼？
 #[allow(dead_code)]
 impl Solution {
-    pub fn is_subsequence(_s: String, _t: String) -> bool {
-        todo!("實現 Is Subsequence 的解決方案 - 請先理解題目和測試案例")
+    pub fn is_subsequence(s: String, t: String) -> bool {
+        if s.is_empty() {
+            return true;
+        }
+
+        if t.len() < s.len() {
+            return false;
+        }
+
+        let mut sn: usize = 0;
+        let s_max = s.len();
+        let s_chars: Vec<char> = s.chars().collect();
+        let t_chars: Vec<char> = t.chars().collect();
+
+        for t_char in &t_chars {
+            if sn < s_max && *t_char == s_chars[sn] {
+                sn += 1;
+                if sn == s_max {
+                    return true;
+                }
+            }
+        }
+        false
     }
 }
 
