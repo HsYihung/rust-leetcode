@@ -44,7 +44,7 @@ src/
 | #   | 題目 | 解法 | 備註 |
 |-----|------|------|------|
 | 8   | [String to Integer (atoi)](src/problems/medium/p8_string_to_integer_atoi_.rs) | 字符串解析 + 溢出檢查 | O(n) 時間, O(1) 空間
-| 62  | [Unique Paths](src/problems/medium/p62_unique_paths.rs) | 待實現 | - |
+| 62  | [Unique Paths](src/problems/medium/p62_unique_paths.rs) | 動態規劃 | O(mn) 時間, O(mn) 空間 |
 | 73  | [Set Matrix Zeroes](src/problems/medium/p73_set_matrix_zeroes.rs) | 原地標記法 | O(m+n) 空間，O(1) 額外空間優化
 | 498 | [Diagonal Traverse](src/problems/medium/p498_diagonal_traverse.rs) | 模擬對角線遍歷 | O(mn) 時間, O(mn) 空間
 | 1504 | [Count Submatrices With All Ones](src/problems/medium/p1504_count_submatrices_with_all_ones.rs) | 高度數組 + 直方圖遍歷 | O(nm²) 時間, O(m) 空間
@@ -60,8 +60,8 @@ src/
 - **Easy**: 6 題
 - **Medium**: 6 題  
 - **Hard**: 1 題
-- **已完成**: 12 題
-- **待實現**: 1 題
+- **已完成**: 13 題
+- **待實現**: 0 題
 
 ## 執行測試
 
@@ -164,3 +164,10 @@ println!("Memory: {} bytes", metrics.memory_size);
 - 提前終止優化：添加邊界檢查，空字符串直接返回 true，s 比 t 長直接返回 false
 - 字符訪問：將字符串轉換為字符向量，支持高效的隨機訪問和比較
 - 時間複雜度：O(n+m)（n 為 s 長度，m 為 t 長度），空間複雜度：O(n+m)（字符向量存儲）
+
+### Unique Paths (p62)
+- 動態規劃算法：使用二維 DP 表格存儲每個位置的路徑數量，所有位置初始化為 1
+- 邊界條件處理：第一行和第一列的所有位置路徑數都為 1（只能一直向右或一直向下）
+- 狀態轉移方程：`dp[i][j] = dp[i-1][j] + dp[i][j-1]`（當前位置 = 上方路徑數 + 左方路徑數）
+- 提前返回優化：當 m 或 n 為 1 時直接返回 1，避免不必要的計算
+- 時間複雜度：O(m×n)（需要填充整個 DP 表格），空間複雜度：O(m×n)（存儲 DP 表格）
