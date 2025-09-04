@@ -13,7 +13,8 @@ src/
     ├── easy/
     │   ├── p0001_two_sum.rs
     │   ├── p1800_maximum_ascending_subarray_sum.rs
-    │   └── p3174_clear_digits.rs
+    │   ├── p3174_clear_digits.rs
+    │   └── p3516_find_closest_person.rs
     ├── medium/
     │   ├── p8_string_to_integer_atoi_.rs
     │   ├── p73_set_matrix_zeroes.rs
@@ -32,6 +33,7 @@ src/
 | 1    | [Two Sum](src/problems/easy/p0001_two_sum.rs) | HashMap | O(n) 時間, O(n) 空間 |
 | 1800 | [Maximum Ascending Subarray Sum](src/problems/easy/p1800_maximum_ascending_subarray_sum.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
 | 3174 | [Clear Digits](src/problems/easy/p3174_clear_digits.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
+| 3516 | [Find Closest Person](src/problems/easy/p3516_find_closest_person.rs) | 待實現 | 比較絕對距離 |
 
 ### Medium
 | #   | 題目 | 解法 | 備註 |
@@ -48,12 +50,12 @@ src/
 | 679 | [24 Game](src/problems/hard/p679_24_game.rs) | 回溯算法 | O(4^4 * 4!) 時間複雜度 |
 
 ## 統計
-- **總題目數**: 9
-- **Easy**: 3 題
+- **總題目數**: 10
+- **Easy**: 4 題
 - **Medium**: 5 題  
 - **Hard**: 1 題
 - **已完成**: 9 題
-- **待實現**: 0 題
+- **待實現**: 1 題
 
 ## 執行測試
 
