@@ -1,3 +1,5 @@
+use std::cmp;
+
 /// 62. Unique Paths
 ///
 /// 題目描述：
@@ -34,15 +36,14 @@ impl Solution {
             return 1;
         }
 
-        let mut grid = vec![vec![1; n as usize]; m as usize];
+        let (m, n) = (cmp::min(m as u64, n as u64), cmp::max(m as u64, n as u64));
+        let mut result = 1u64;
 
-        for i in 1..m as usize {
-            for j in 1..n as usize {
-                grid[i][j] = grid[i - 1][j] + grid[i][j - 1];
-            }
+        for i in 0..m - 1 {
+            result = result * (m + n - 2 - i) / (i + 1)
         }
 
-        grid[m as usize - 1][n as usize - 1]
+        result as i32
     }
 }
 
