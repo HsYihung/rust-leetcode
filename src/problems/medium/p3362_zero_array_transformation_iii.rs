@@ -33,33 +33,37 @@
 // 1 <= queries.length <= 10^5
 // queries[i].length == 2
 // 0 <= li <= ri < nums.length
+#[allow(dead_code)]
+impl Solution {
+    pub fn max_removal(nums: Vec<i32>, mut queries: Vec<Vec<i32>>) -> i32 {
+        use std::collections::BinaryHeap;
+        queries.sort_by(|a, b| a[0].cmp(&b[0]));
+        let mut heap = BinaryHeap::new();
+        let mut delta_array = vec![0; nums.len() + 1];
+        let mut operations = 0;
+        let mut j = 0;
+
+        for i in 0..nums.len() {
+            operations += delta_array[i];
+            while j < queries.len() && queries[j][0] == i as i32 {
+                heap.push(queries[j][1]);
+                j += 1;
+            }
+            while operations < nums[i] && !heap.is_empty() && *heap.peek().unwrap() >= i as i32 {
+                operations += 1;
+                let end = heap.pop().unwrap() as usize;
+                delta_array[end + 1] -= 1;
+            }
+            if operations < nums[i] {
+                return -1;
+            }
+        }
+        heap.len() as i32
+    }
+}
 
 #[allow(dead_code)]
-pub fn max_removal(nums: Vec<i32>, mut queries: Vec<Vec<i32>>) -> i32 {
-    use std::collections::BinaryHeap;
-    queries.sort_by(|a, b| a[0].cmp(&b[0]));
-    let mut heap = BinaryHeap::new();
-    let mut delta_array = vec![0; nums.len() + 1];
-    let mut operations = 0;
-    let mut j = 0;
-
-    for i in 0..nums.len() {
-        operations += delta_array[i];
-        while j < queries.len() && queries[j][0] == i as i32 {
-            heap.push(queries[j][1]);
-            j += 1;
-        }
-        while operations < nums[i] && !heap.is_empty() && *heap.peek().unwrap() >= i as i32 {
-            operations += 1;
-            let end = heap.pop().unwrap() as usize;
-            delta_array[end + 1] -= 1;
-        }
-        if operations < nums[i] {
-            return -1;
-        }
-    }
-    heap.len() as i32
-}
+struct Solution;
 
 #[cfg(test)]
 mod tests {
@@ -98,7 +102,7 @@ mod tests {
             vec![3, 4],
             vec![2, 4],
         ];
-        assert_eq!(max_removal(nums, queries), 20);
+        assert_eq!(Solution::max_removal(nums, queries), 20);
     }
 
     // 題目自訂測資2
@@ -113,7 +117,7 @@ mod tests {
             vec![0, 1],
             vec![0, 0],
         ];
-        assert_eq!(max_removal(nums, queries), 4);
+        assert_eq!(Solution::max_removal(nums, queries), 4);
     }
 
     // 題目範例 1
@@ -121,7 +125,7 @@ mod tests {
     fn example1() {
         let nums = vec![2, 0, 2];
         let queries = vec![vec![0, 2], vec![0, 2], vec![1, 1]];
-        assert_eq!(max_removal(nums, queries), 1);
+        assert_eq!(Solution::max_removal(nums, queries), 1);
     }
 
     // 題目自訂測資
@@ -129,7 +133,7 @@ mod tests {
     fn custom_case_1() {
         let nums = vec![0, 3];
         let queries = vec![vec![0, 1], vec![0, 0], vec![0, 1], vec![0, 1], vec![0, 0]];
-        assert_eq!(max_removal(nums, queries), 2);
+        assert_eq!(Solution::max_removal(nums, queries), 2);
     }
 
     // 題目範例 2
@@ -137,7 +141,7 @@ mod tests {
     fn example2() {
         let nums = vec![1, 1, 1, 1];
         let queries = vec![vec![1, 3], vec![0, 2], vec![1, 3], vec![1, 2]];
-        assert_eq!(max_removal(nums, queries), 2);
+        assert_eq!(Solution::max_removal(nums, queries), 2);
     }
 
     // 題目範例 3
@@ -145,6 +149,6 @@ mod tests {
     fn example3() {
         let nums = vec![1, 2, 3, 4];
         let queries = vec![vec![0, 3]];
-        assert_eq!(max_removal(nums, queries), -1);
+        assert_eq!(Solution::max_removal(nums, queries), -1);
     }
 }

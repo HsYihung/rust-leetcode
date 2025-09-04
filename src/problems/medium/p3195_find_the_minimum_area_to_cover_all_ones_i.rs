@@ -28,32 +28,37 @@
 /// - grid[i][j] 只能是 0 或 1
 /// - 輸入保證 grid 中至少有一個 1
 #[allow(dead_code)]
-pub fn minimum_area(grid: Vec<Vec<i32>>) -> i32 {
-    let m = grid.len();
-    let n = grid[0].len();
+impl Solution {
+    pub fn minimum_area(grid: Vec<Vec<i32>>) -> i32 {
+        let m = grid.len();
+        let n = grid[0].len();
 
-    let mut min_row = m;
-    let mut max_row = 0;
-    let mut min_col = n;
-    let mut max_col = 0;
+        let mut min_row = m;
+        let mut max_row = 0;
+        let mut min_col = n;
+        let mut max_col = 0;
 
-    // 優化版本：使用 enumerate 和 iterator
-    for (i, row) in grid.iter().enumerate() {
-        for (j, &cell) in row.iter().enumerate() {
-            if cell == 1 {
-                min_row = min_row.min(i);
-                max_row = max_row.max(i);
-                min_col = min_col.min(j);
-                max_col = max_col.max(j);
+        // 優化版本：使用 enumerate 和 iterator
+        for (i, row) in grid.iter().enumerate() {
+            for (j, &cell) in row.iter().enumerate() {
+                if cell == 1 {
+                    min_row = min_row.min(i);
+                    max_row = max_row.max(i);
+                    min_col = min_col.min(j);
+                    max_col = max_col.max(j);
+                }
             }
         }
+
+        let height = max_row - min_row + 1;
+        let width = max_col - min_col + 1;
+
+        (height * width) as i32
     }
-
-    let height = max_row - min_row + 1;
-    let width = max_col - min_col + 1;
-
-    (height * width) as i32
 }
+
+#[allow(dead_code)]
+struct Solution;
 
 #[cfg(test)]
 mod tests {
@@ -65,15 +70,15 @@ mod tests {
 
         // 示例 1: [[0,1,0],[1,0,1]]
         let grid1 = vec![vec![0, 1, 0], vec![1, 0, 1]];
-        assert_eq!(minimum_area(grid1), 6);
+        assert_eq!(Solution::minimum_area(grid1), 6);
 
         // 示例 2: [[1,0],[0,0]]
         let grid2 = vec![vec![1, 0], vec![0, 0]];
-        assert_eq!(minimum_area(grid2), 1);
+        assert_eq!(Solution::minimum_area(grid2), 1);
 
         // 示例 3: [[0,0,0],[0,1,0],[0,0,0]]
         let grid3 = vec![vec![0, 0, 0], vec![0, 1, 0], vec![0, 0, 0]];
-        assert_eq!(minimum_area(grid3), 1);
+        assert_eq!(Solution::minimum_area(grid3), 1);
     }
 
     #[test]
@@ -82,19 +87,19 @@ mod tests {
 
         // 單個 1 在左上角
         let grid1 = vec![vec![1]];
-        assert_eq!(minimum_area(grid1), 1);
+        assert_eq!(Solution::minimum_area(grid1), 1);
 
         // 全為 1 的矩形
         let grid2 = vec![vec![1, 1], vec![1, 1]];
-        assert_eq!(minimum_area(grid2), 4);
+        assert_eq!(Solution::minimum_area(grid2), 4);
 
         // 只有一行有 1
         let grid3 = vec![vec![1, 0, 1, 0, 1]];
-        assert_eq!(minimum_area(grid3), 5);
+        assert_eq!(Solution::minimum_area(grid3), 5);
 
         // 只有一列有 1
         let grid4 = vec![vec![1], vec![0], vec![1], vec![0], vec![1]];
-        assert_eq!(minimum_area(grid4), 5);
+        assert_eq!(Solution::minimum_area(grid4), 5);
     }
 
     #[test]
@@ -103,15 +108,15 @@ mod tests {
 
         // 四角都有 1
         let grid1 = vec![vec![1, 0, 1], vec![0, 0, 0], vec![1, 0, 1]];
-        assert_eq!(minimum_area(grid1), 9);
+        assert_eq!(Solution::minimum_area(grid1), 9);
 
         // L 形狀的 1
         let grid2 = vec![vec![1, 1, 0], vec![1, 0, 0], vec![1, 0, 0]];
-        assert_eq!(minimum_area(grid2), 6);
+        assert_eq!(Solution::minimum_area(grid2), 6);
 
         // 對角線上的 1
         let grid3 = vec![vec![1, 0, 0], vec![0, 1, 0], vec![0, 0, 1]];
-        assert_eq!(minimum_area(grid3), 9);
+        assert_eq!(Solution::minimum_area(grid3), 9);
 
         // 最大矩形 (邊界條件)
         let grid4 = vec![
@@ -121,6 +126,6 @@ mod tests {
             vec![0, 0, 0, 0, 0],
             vec![1, 0, 0, 0, 1],
         ];
-        assert_eq!(minimum_area(grid4), 25);
+        assert_eq!(Solution::minimum_area(grid4), 25);
     }
 }

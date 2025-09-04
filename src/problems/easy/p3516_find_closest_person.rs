@@ -37,26 +37,31 @@
 /// 限制條件：
 /// - 1 <= x, y, z <= 100
 #[allow(dead_code)]
-pub fn find_closest_person(x: i32, y: i32, z: i32) -> i32 {
-    let n1 = absolute(z - x);
-    let n2 = absolute(z - y);
+impl Solution {
+    pub fn find_closest(x: i32, y: i32, z: i32) -> i32 {
+        let n1 = Self::absolute(z - x);
+        let n2 = Self::absolute(z - y);
 
-    if n1 < n2 {
-        1
-    } else if n2 < n1 {
-        2
-    } else {
-        0
+        if n1 < n2 {
+            1
+        } else if n2 < n1 {
+            2
+        } else {
+            0
+        }
+    }
+
+    fn absolute(n: i32) -> i32 {
+        if n >= 0 {
+            n
+        } else {
+            -n
+        }
     }
 }
 
-pub fn absolute(n: i32) -> i32 {
-    if n >= 0 {
-        n
-    } else {
-        -n
-    }
-}
+#[allow(dead_code)]
+struct Solution;
 
 #[cfg(test)]
 mod tests {
@@ -65,29 +70,29 @@ mod tests {
     #[test]
     fn test_basic_cases() {
         // 基本測試案例 - 來自題目示例
-        assert_eq!(find_closest_person(1, 2, 3), 2); // 示例 1：第二個人更接近
-        assert_eq!(find_closest_person(1, 5, 3), 0); // 示例 2：兩人距離相等
-        assert_eq!(find_closest_person(5, 2, 3), 2); // 示例 3：第二個人更接近
-        assert_eq!(find_closest_person(1, 4, 3), 2); // 第二個人更接近 (距離1 vs 2)
+        assert_eq!(Solution::find_closest(1, 2, 3), 2); // 示例 1：第二個人更接近
+        assert_eq!(Solution::find_closest(1, 5, 3), 0); // 示例 2：兩人距離相等
+        assert_eq!(Solution::find_closest(5, 2, 3), 2); // 示例 3：第二個人更接近
+        assert_eq!(Solution::find_closest(1, 4, 3), 2); // 第二個人更接近 (距離1 vs 2)
     }
 
     #[test]
     fn test_boundary_cases() {
         // 邊界測試案例 - 最小最大值
-        assert_eq!(find_closest_person(1, 1, 1), 0); // 所有人在同一位置
-        assert_eq!(find_closest_person(1, 100, 50), 1); // 最大範圍，第一個人更接近
-        assert_eq!(find_closest_person(100, 1, 50), 2); // 最大範圍，第二個人更接近
-        assert_eq!(find_closest_person(25, 75, 50), 0); // 中間位置，兩人等距
+        assert_eq!(Solution::find_closest(1, 1, 1), 0); // 所有人在同一位置
+        assert_eq!(Solution::find_closest(1, 100, 50), 1); // 最大範圍，第一個人更接近
+        assert_eq!(Solution::find_closest(100, 1, 50), 2); // 最大範圍，第二個人更接近
+        assert_eq!(Solution::find_closest(25, 75, 50), 0); // 中間位置，兩人等距
     }
 
     #[test]
     fn test_corner_cases() {
         // 特殊情況測試案例
-        assert_eq!(find_closest_person(1, 3, 2), 0); // z 在 x 和 y 之間，等距
-        assert_eq!(find_closest_person(3, 1, 2), 0); // z 在 x 和 y 之間，等距
-        assert_eq!(find_closest_person(10, 20, 5), 1); // z 在 x 左側
-        assert_eq!(find_closest_person(5, 10, 15), 2); // z 在 y 右側
-        assert_eq!(find_closest_person(50, 50, 75), 0); // x 和 y 相同位置
-        assert_eq!(find_closest_person(1, 1, 10), 0); // x 和 y 相同位置，距離 z 較遠
+        assert_eq!(Solution::find_closest(1, 3, 2), 0); // z 在 x 和 y 之間，等距
+        assert_eq!(Solution::find_closest(3, 1, 2), 0); // z 在 x 和 y 之間，等距
+        assert_eq!(Solution::find_closest(10, 20, 5), 1); // z 在 x 左側
+        assert_eq!(Solution::find_closest(5, 10, 15), 2); // z 在 y 右側
+        assert_eq!(Solution::find_closest(50, 50, 75), 0); // x 和 y 相同位置
+        assert_eq!(Solution::find_closest(1, 1, 10), 0); // x 和 y 相同位置，距離 z 較遠
     }
 }

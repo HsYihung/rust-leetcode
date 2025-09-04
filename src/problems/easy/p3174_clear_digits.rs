@@ -21,38 +21,42 @@
 // 1 <= s.length <= 100
 // s 僅由小寫英文字母和數字組成。
 // 輸入生成的情況下，可以刪除所有數字。
-
 #[allow(dead_code)]
-pub fn clear_digits(s: String) -> String {
-    if s.is_empty() {
-        return s;
-    }
+impl Solution {
+    pub fn clear_digits(s: String) -> String {
+        if s.is_empty() {
+            return s;
+        }
 
-    let mut chars: Vec<char> = s.chars().collect();
-    let mut i: usize = 0;
+        let mut chars: Vec<char> = s.chars().collect();
+        let mut i: usize = 0;
 
-    while i < chars.len() {
-        if chars[i].is_ascii_digit() {
-            if i > 0 {
-                // 回退一个字符
-                i -= 1;
-                // 删除当前位置的字符
-                chars.remove(i);
-                // 如果当前位置仍有字符，则删除下一个字符
-                if i < chars.len() {
+        while i < chars.len() {
+            if chars[i].is_ascii_digit() {
+                if i > 0 {
+                    // 回退一个字符
+                    i -= 1;
+                    // 删除当前位置的字符
+                    chars.remove(i);
+                    // 如果当前位置仍有字符，则删除下一个字符
+                    if i < chars.len() {
+                        chars.remove(i);
+                    }
+                } else {
+                    // 如果 i == 0，直接删除
                     chars.remove(i);
                 }
             } else {
-                // 如果 i == 0，直接删除
-                chars.remove(i);
+                i += 1;
             }
-        } else {
-            i += 1;
         }
-    }
 
-    chars.into_iter().collect()
+        chars.into_iter().collect()
+    }
 }
+
+#[allow(dead_code)]
+struct Solution;
 
 // 測試函數
 #[cfg(test)]
@@ -61,7 +65,7 @@ mod tests {
 
     #[test]
     fn p3174_test_clear_digits() {
-        assert_eq!(clear_digits("abc".to_string()), "abc".to_string());
-        assert_eq!(clear_digits("cb34".to_string()), "".to_string());
+        assert_eq!(Solution::clear_digits("abc".to_string()), "abc".to_string());
+        assert_eq!(Solution::clear_digits("cb34".to_string()), "".to_string());
     }
 }

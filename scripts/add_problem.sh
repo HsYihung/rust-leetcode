@@ -59,6 +59,7 @@ cat > "$PROBLEM_FILE" << EOF
 /// - [限制條件 2]
 /// - [其他相關限制]
 
+#[allow(dead_code)]
 impl Solution {
     pub fn solution() {
         todo!("實現 ${PROBLEM_TITLE} 的解決方案 - 請先理解題目和測試案例")

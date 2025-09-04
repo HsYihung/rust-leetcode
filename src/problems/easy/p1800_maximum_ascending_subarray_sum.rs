@@ -21,25 +21,30 @@
 /// 輸出：33
 /// 解釋：[10,11,12] 是一個升序子數組，其和為 33。
 #[allow(dead_code)]
-pub fn max_ascending_sum(nums: Vec<i32>) -> i32 {
-    if nums.is_empty() {
-        return 0;
-    }
-
-    let mut max_sum = nums[0];
-    let mut current_sum = nums[0];
-
-    for i in 1..nums.len() {
-        if nums[i] > nums[i - 1] {
-            current_sum += nums[i];
-        } else {
-            current_sum = nums[i];
+impl Solution {
+    pub fn max_ascending_sum(nums: Vec<i32>) -> i32 {
+        if nums.is_empty() {
+            return 0;
         }
-        max_sum = max_sum.max(current_sum);
-    }
 
-    max_sum
+        let mut max_sum = nums[0];
+        let mut current_sum = nums[0];
+
+        for i in 1..nums.len() {
+            if nums[i] > nums[i - 1] {
+                current_sum += nums[i];
+            } else {
+                current_sum = nums[i];
+            }
+            max_sum = max_sum.max(current_sum);
+        }
+
+        max_sum
+    }
 }
+
+#[allow(dead_code)]
+struct Solution;
 
 #[cfg(test)]
 mod tests {
@@ -47,10 +52,13 @@ mod tests {
 
     #[test]
     fn test_max_ascending_sum() {
-        assert_eq!(max_ascending_sum(vec![10, 20, 30, 5, 10, 50]), 65);
-        assert_eq!(max_ascending_sum(vec![10, 20, 30, 40, 50]), 150);
-        assert_eq!(max_ascending_sum(vec![12, 17, 15, 13, 10, 11, 12]), 33);
-        assert_eq!(max_ascending_sum(vec![3]), 3);
-        assert_eq!(max_ascending_sum(vec![]), 0);
+        assert_eq!(Solution::max_ascending_sum(vec![10, 20, 30, 5, 10, 50]), 65);
+        assert_eq!(Solution::max_ascending_sum(vec![10, 20, 30, 40, 50]), 150);
+        assert_eq!(
+            Solution::max_ascending_sum(vec![12, 17, 15, 13, 10, 11, 12]),
+            33
+        );
+        assert_eq!(Solution::max_ascending_sum(vec![3]), 3);
+        assert_eq!(Solution::max_ascending_sum(vec![]), 0);
     }
 }

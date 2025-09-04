@@ -27,21 +27,26 @@
 use std::collections::HashMap;
 
 #[allow(dead_code)]
-pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
-    let mut map = HashMap::with_capacity(nums.len());
+impl Solution {
+    pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
+        let mut map = HashMap::with_capacity(nums.len());
 
-    nums.iter()
-        .enumerate()
-        .find_map(|(i, &num)| {
-            map.get(&(target - num))
-                .map(|&j| vec![j, i as i32])
-                .or_else(|| {
-                    map.insert(num, i as i32);
-                    None
-                })
-        })
-        .unwrap()
+        nums.iter()
+            .enumerate()
+            .find_map(|(i, &num)| {
+                map.get(&(target - num))
+                    .map(|&j| vec![j, i as i32])
+                    .or_else(|| {
+                        map.insert(num, i as i32);
+                        None
+                    })
+            })
+            .unwrap()
+    }
 }
+
+#[allow(dead_code)]
+struct Solution;
 
 #[cfg(test)]
 mod tests {
@@ -50,9 +55,9 @@ mod tests {
 
     #[test]
     fn p0001_test_two_sum() {
-        assert_eq!(two_sum(vec![2, 7, 11, 15], 9), vec![0, 1]);
-        assert_eq!(two_sum(vec![3, 2, 4], 6), vec![1, 2]);
-        assert_eq!(two_sum(vec![3, 3], 6), vec![0, 1]);
+        assert_eq!(Solution::two_sum(vec![2, 7, 11, 15], 9), vec![0, 1]);
+        assert_eq!(Solution::two_sum(vec![3, 2, 4], 6), vec![1, 2]);
+        assert_eq!(Solution::two_sum(vec![3, 3], 6), vec![0, 1]);
     }
 
     #[test]
@@ -64,7 +69,8 @@ mod tests {
             let nums = generate_test_data(size);
             let target = size as i32 - 1; // 確保答案在數組的最後
 
-            let (result, metrics) = measure_time_and_space(|| two_sum(nums.clone(), target));
+            let (result, metrics) =
+                measure_time_and_space(|| Solution::two_sum(nums.clone(), target));
 
             println!("Input size: {}", size);
             println!("Result: {:?}", result);
