@@ -32,7 +32,7 @@ src/
 | #    | 題目 | 解法 | 備註 |
 |------|------|------|------|
 | 1    | [Two Sum](src/problems/easy/p0001_two_sum.rs) | HashMap | O(n) 時間, O(n) 空間 |
-| 509  | [Fibonacci Number](src/problems/easy/p509_fibonacci_number.rs) | 待實現 | 斐波那契數列 |
+| 509  | [Fibonacci Number](src/problems/easy/p509_fibonacci_number.rs) | 矩陣快速冪 | O(log n) 時間, O(1) 空間 |
 | 1800 | [Maximum Ascending Subarray Sum](src/problems/easy/p1800_maximum_ascending_subarray_sum.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
 | 3174 | [Clear Digits](src/problems/easy/p3174_clear_digits.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
 | 3516 | [Find Closest Person](src/problems/easy/p3516_find_closest_person.rs) | 距離比較 | O(1) 時間, O(1) 空間 |
@@ -56,8 +56,8 @@ src/
 - **Easy**: 5 題
 - **Medium**: 5 題  
 - **Hard**: 1 題
-- **已完成**: 10 題
-- **待實現**: 1 題
+- **已完成**: 11 題
+- **待實現**: 0 題
 
 ## 執行測試
 
@@ -148,3 +148,9 @@ println!("Memory: {} bytes", metrics.memory_size);
 - 使用自定義絕對值函數處理距離計算：`absolute(z - x)` 和 `absolute(z - y)`
 - 三種返回情況：第一個人更接近返回1，第二個人更接近返回2，距離相等返回0
 - 時間複雜度：O(1)（固定的比較和計算操作），空間複雜度：O(1)（只使用常數額外變量）
+
+### Fibonacci Number (p509)
+- 矩陣快速冪算法：利用斐波那契數列的矩陣表示 `M^n = [[F(n+1), F(n)], [F(n), F(n-1)]]`
+- 使用快速冪技術將矩陣乘法優化到對數級別，基於二進制分解：`M^n = M^(2^k1) × M^(2^k2) × ...`
+- 核心矩陣：`[[1,1],[1,0]]`，通過矩陣乘法規則計算任意次冪
+- 時間複雜度：O(log n)（快速冪需要log₂(n)次矩陣乘法），空間複雜度：O(1)（固定大小矩陣操作）

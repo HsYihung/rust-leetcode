@@ -38,8 +38,60 @@
 /// - 0 <= n <= 30
 #[allow(dead_code)]
 impl Solution {
-    pub fn fib(_n: i32) -> i32 {
-        todo!("實現 Fibonacci Number 的解決方案 - 請先理解題目和測試案例")
+    pub fn fib(n: i32) -> i32 {
+        // 基本情況：F(0) = 0, F(1) = 1
+        if n <= 1 {
+            return n;
+        }
+
+        // 定義基本矩陣 [[1, 1], [1, 0]]
+        // 這個矩陣有特性：M^n = [[F(n+1), F(n)], [F(n), F(n-1)]]
+        let base_matrix = [[1, 1], [1, 0]];
+
+        // 使用快速冪計算 M^n
+        let result_matrix = Self::matrix_power(base_matrix, n as u32);
+
+        // F(n) 位於結果矩陣的 [0][1] 位置
+        result_matrix[0][1]
+    }
+
+    /// 矩陣快速冪算法
+    /// 時間複雜度：O(log n)
+    /// 空間複雜度：O(1)
+    fn matrix_power(mut base: [[i32; 2]; 2], mut exp: u32) -> [[i32; 2]; 2] {
+        // 初始化結果為單位矩陣 [[1, 0], [0, 1]]
+        let mut result = [[1, 0], [0, 1]];
+
+        // 快速冪核心邏輯：利用二進制分解
+        while exp > 0 {
+            // 如果當前位為1，將當前的 base^(2^k) 累乘到結果中
+            if exp & 1 == 1 {
+                result = Self::matrix_multiply(result, base);
+            }
+            // base 自乘，準備下一個 2^k 次冪
+            base = Self::matrix_multiply(base, base);
+            // 右移一位，處理下一個二進制位
+            exp >>= 1;
+        }
+
+        result
+    }
+
+    /// 2x2 矩陣乘法
+    /// 計算 A × B，其中 A 和 B 都是 2x2 矩陣
+    fn matrix_multiply(a: [[i32; 2]; 2], b: [[i32; 2]; 2]) -> [[i32; 2]; 2] {
+        [
+            // 第一行：[a00*b00 + a01*b10, a00*b01 + a01*b11]
+            [
+                a[0][0] * b[0][0] + a[0][1] * b[1][0],
+                a[0][0] * b[0][1] + a[0][1] * b[1][1],
+            ],
+            // 第二行：[a10*b00 + a11*b10, a10*b01 + a11*b11]
+            [
+                a[1][0] * b[0][0] + a[1][1] * b[1][0],
+                a[1][0] * b[0][1] + a[1][1] * b[1][1],
+            ],
+        ]
     }
 }
 
