@@ -59,10 +59,16 @@ cat > "$PROBLEM_FILE" << EOF
 /// - [限制條件 2]
 /// - [其他相關限制]
 
-#[allow(dead_code)]
-pub fn solution() {
-    todo!("實現 ${PROBLEM_TITLE} 的解決方案 - 請先理解題目和測試案例")
+// LeetCode 提交格式
+impl Solution {
+    pub fn solution() {
+        todo!("實現 ${PROBLEM_TITLE} 的解決方案 - 請先理解題目和測試案例")
+    }
 }
+
+// 測試用的 Solution 結構體
+#[allow(dead_code)]
+struct Solution;
 
 #[cfg(test)]
 mod tests {
@@ -71,19 +77,20 @@ mod tests {
     #[test]
     fn test_basic_cases() {
         // 基本測試案例 - 來自題目示例
-        // todo: 根據題目示例添加測試
+        // todo: 根據題目示例添加測試，使用 Solution::function_name() 格式
+        // 範例: assert_eq!(Solution::function_name(input), expected_output);
     }
     
     #[test]
     fn test_edge_cases() {
         // 邊界測試案例
-        // todo: 添加邊界條件測試（空輸入、單元素等）
+        // todo: 添加邊界條件測試（空輸入、單元素等），使用 Solution::function_name() 格式
     }
     
     #[test]
     fn test_corner_cases() {
         // 特殊情況測試案例  
-        // todo: 添加針對此題目的特殊情況測試
+        // todo: 添加針對此題目的特殊情況測試，使用 Solution::function_name() 格式
     }
 }
 EOF
