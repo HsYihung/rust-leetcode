@@ -20,6 +20,7 @@ src/
     ├── medium/
     │   ├── p8_string_to_integer_atoi_.rs
     │   ├── p62_unique_paths.rs
+    │   ├── p63_unique_paths_ii.rs
     │   ├── p73_set_matrix_zeroes.rs
     │   ├── p498_diagonal_traverse.rs
     │   ├── p1504_count_submatrices_with_all_ones.rs
@@ -47,6 +48,7 @@ src/
 |-----|------|------|------|
 | 8   | [String to Integer (atoi)](src/problems/medium/p8_string_to_integer_atoi_.rs) | 字符串解析 + 溢出檢查 | O(n) 時間, O(1) 空間
 | 62  | [Unique Paths](src/problems/medium/p62_unique_paths.rs) | 組合數學 | O(min(m,n)) 時間, O(1) 空間 |
+| 63  | [Unique Paths II](src/problems/medium/p63_unique_paths_ii.rs) | 待實現 | - |
 | 73  | [Set Matrix Zeroes](src/problems/medium/p73_set_matrix_zeroes.rs) | 原地標記法 | O(m+n) 空間，O(1) 額外空間優化
 | 498 | [Diagonal Traverse](src/problems/medium/p498_diagonal_traverse.rs) | 模擬對角線遍歷 | O(mn) 時間, O(mn) 空間
 | 1504 | [Count Submatrices With All Ones](src/problems/medium/p1504_count_submatrices_with_all_ones.rs) | 高度數組 + 直方圖遍歷 | O(nm²) 時間, O(m) 空間
@@ -60,12 +62,12 @@ src/
 
 ## 統計
 
-* **總題目數**: 13
+* **總題目數**: 14
 * **Easy**: 6 題
-* **Medium**: 6 題  
+* **Medium**: 7 題  
 * **Hard**: 1 題
 * **已完成**: 13 題
-* **待實現**: 0 題
+* **待實現**: 1 題
 
 ## 執行測試
 
