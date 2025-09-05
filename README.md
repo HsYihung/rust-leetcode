@@ -24,6 +24,7 @@ src/
     │   ├── p73_set_matrix_zeroes.rs
     │   ├── p498_diagonal_traverse.rs
     │   ├── p1504_count_submatrices_with_all_ones.rs
+    │   ├── p2749_minimum_operations_to_make_the_integer_zero.rs
     │   └── p3195_find_the_minimum_area_to_cover_all_ones_i.rs
     └── hard/
         └── p679_24_game.rs
@@ -52,6 +53,7 @@ src/
 | 73  | [Set Matrix Zeroes](src/problems/medium/p73_set_matrix_zeroes.rs) | 原地標記法 | O(m+n) 空間，O(1) 額外空間優化
 | 498 | [Diagonal Traverse](src/problems/medium/p498_diagonal_traverse.rs) | 模擬對角線遍歷 | O(mn) 時間, O(mn) 空間
 | 1504 | [Count Submatrices With All Ones](src/problems/medium/p1504_count_submatrices_with_all_ones.rs) | 高度數組 + 直方圖遍歷 | O(nm²) 時間, O(m) 空間
+| 2749 | [Minimum Operations to Make the Integer Zero](src/problems/medium/p2749_minimum_operations_to_make_the_integer_zero.rs) | 待實現 | 位操作 + 數學分析
 | 3195 | [Find the Minimum Area to Cover All Ones I](src/problems/medium/p3195_find_the_minimum_area_to_cover_all_ones_i.rs) | 邊界框算法 | O(mn) 時間, O(1) 空間
 
 ### Hard
@@ -62,12 +64,12 @@ src/
 
 ## 統計
 
-* **總題目數**: 14
+* **總題目數**: 15
 * **Easy**: 6 題
-* **Medium**: 7 題  
+* **Medium**: 8 題  
 * **Hard**: 1 題
 * **已完成**: 14 題
-* **待實現**: 0 題
+* **待實現**: 1 題
 
 ## 執行測試
 

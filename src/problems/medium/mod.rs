@@ -1,4 +1,5 @@
 pub mod p1504_count_submatrices_with_all_ones;
+pub mod p2749_minimum_operations_to_make_the_integer_zero;
 pub mod p3195_find_the_minimum_area_to_cover_all_ones_i;
 pub mod p3362_zero_array_transformation_iii;
 pub mod p498_diagonal_traverse;
