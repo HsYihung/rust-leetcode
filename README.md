@@ -48,7 +48,7 @@ src/
 | #   | 題目 | 解法 | 備註 |
 |-----|------|------|------|
 | 8   | [String to Integer (atoi)](src/problems/medium/p8_string_to_integer_atoi_.rs) | 字符串解析 + 溢出檢查 | O(n) 時間, O(1) 空間
-| 62  | [Unique Paths](src/problems/medium/p62_unique_paths.rs) | 組合數學 | O(min(m,n)) 時間, O(1) 空間 |
+| 62  | [Unique Paths](src/problems/medium/p62_unique_paths.rs) | 組合數學 + 動態規劃 + 記憶化遞歸 | O(min(m,n)) 時間, O(1) 空間 |
 | 63  | [Unique Paths II](src/problems/medium/p63_unique_paths_ii.rs) | 動態規劃 | O(mn) 時間, O(mn) 空間 |
 | 73  | [Set Matrix Zeroes](src/problems/medium/p73_set_matrix_zeroes.rs) | 原地標記法 | O(m+n) 空間，O(1) 額外空間優化
 | 498 | [Diagonal Traverse](src/problems/medium/p498_diagonal_traverse.rs) | 模擬對角線遍歷 | O(mn) 時間, O(mn) 空間
@@ -189,12 +189,22 @@ println!("Memory: {} bytes", metrics.memory_size);
 
 ### Unique Paths (p62)
 
+**解法一：數學組合公式（最優解）**
 * 組合數學算法：將路徑問題轉化為組合數計算 C(m+n-2, m-1)
 * 數學優化：使用連續相乘除法避免階乘溢出：result = result × (m+n-2-i) / (i+1)
-* 對稱性優化：確保 m ≤ n，減少迴圈次數從 O(max(m,n)) 到 O(min(m,n))
+* 對稱性優化：確保 smaller ≤ larger，減少迴圈次數從 O(max(m,n)) 到 O(min(m,n))
 * 溢出處理：使用 u64 進行中間計算，避免 i32 溢出問題
-* 邊界條件：當 m 或 n 為 1 時直接返回 1
-* 時間複雜度：O(min(m,n))（組合數計算），空間複雜度：O(1)（常數空間）
+* 時間複雜度：O(min(m,n))，空間複雜度：O(1)
+
+**解法二：動態規劃（教學用途）**
+* 狀態轉移：dp[i][j] = dp[i-1][j] + dp[i][j-1]
+* 空間優化：使用滾動數組技術，將二維 DP 優化為一維
+* 時間複雜度：O(m×n)，空間複雜度：O(n)
+
+**解法三：記憶化遞歸（展示遞歸思路）**
+* 遞歸分解：從每個位置可以向右或向下移動
+* 記憶化優化：使用 HashMap 保存計算結果避免重複計算
+* 時間複雜度：O(m×n)，空間複雜度：O(m×n)
 
 ### Unique Paths II (p63)
 
