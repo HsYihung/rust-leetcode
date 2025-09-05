@@ -30,10 +30,45 @@
 /// - -10^9 <= num2 <= 10^9
 #[allow(dead_code)]
 impl Solution {
-    pub fn minimum_operations_to_make_integer_zero(_num1: i32, _num2: i32) -> i32 {
-        todo!(
-            "實現 Minimum Operations to Make the Integer Zero 的解決方案 - 請先理解題目和測試案例"
-        )
+    pub fn minimum_operations_to_make_integer_zero(num1: i32, num2: i32) -> i32 {
+        // 早期終止：如果 num2 >= num1，每次操作都會增加或不變，永遠無法減到 0
+        if num2 >= num1 {
+            return -1;
+        }
+
+        // 嘗試 1 到 60 次操作（2^60 已超過 i32 最大值，足夠覆蓋所有情況）
+        for k in 1..=60 {
+            // 計算經過 k 次操作後需要的目標值
+            // target = num1 - k*num2 = 2^i₁ + 2^i₂ + ... + 2^iₖ
+            let target = num1 - k * num2;
+
+            // 檢查三個必要條件：
+            // 1. target > 0: 必須為正數才能表示為 2 的冪次之和
+            // 2. target >= k: 最小情況是 k 個 2^0 = k
+            // 3. popcount(target) <= k: 二進制中 1 的個數不能超過操作次數
+            if target > 0 && target >= k && Self::popcount(target as i64) <= k {
+                return k;
+            }
+        }
+
+        // 60 次操作內都無法完成，返回 -1
+        -1
+    }
+
+    /// 計算二進制表示中 1 的個數（popcount/hamming weight）
+    ///
+    /// # 參數
+    /// * `n` - 要計算的數字
+    ///
+    /// # 返回值
+    /// * 二進制表示中 1 的個數
+    fn popcount(mut n: i64) -> i32 {
+        let mut count = 0;
+        while n > 0 {
+            count += n & 1; // 檢查最低位是否為 1
+            n >>= 1; // 右移一位
+        }
+        count as i32
     }
 }
 
@@ -87,8 +122,8 @@ mod tests {
         // 當 num1 較大但 num2 為負數時的情況
         assert_eq!(
             Solution::minimum_operations_to_make_integer_zero(100, -10),
-            7
-        ); // 需要多次操作
+            3
+        ); // k=3: 100-3*(-10)=130, popcount(130)=2 ≤ 3
 
         // 特殊組合：num1 和 num2 相等
         assert_eq!(Solution::minimum_operations_to_make_integer_zero(8, 8), -1); // 無法達成
@@ -97,7 +132,7 @@ mod tests {
         assert_eq!(Solution::minimum_operations_to_make_integer_zero(15, -1), 1); // 15 = 2^4 - 1 = 16 - 1
 
         // 複雜的多步驟情況
-        assert_eq!(Solution::minimum_operations_to_make_integer_zero(25, -3), 4);
-        // 需要多次精確計算
+        assert_eq!(Solution::minimum_operations_to_make_integer_zero(25, -3), 3);
+        // k=3: 25-3*(-3)=34, popcount(34)=2 ≤ 3
     }
 }

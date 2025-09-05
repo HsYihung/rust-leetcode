@@ -25,7 +25,8 @@ src/
     │   ├── p498_diagonal_traverse.rs
     │   ├── p1504_count_submatrices_with_all_ones.rs
     │   ├── p2749_minimum_operations_to_make_the_integer_zero.rs
-    │   └── p3195_find_the_minimum_area_to_cover_all_ones_i.rs
+    │   ├── p3195_find_the_minimum_area_to_cover_all_ones_i.rs
+    │   └── p3362_zero_array_transformation_iii.rs
     └── hard/
         └── p679_24_game.rs
 ```
@@ -53,8 +54,9 @@ src/
 | 73  | [Set Matrix Zeroes](src/problems/medium/p73_set_matrix_zeroes.rs) | 原地標記法 | O(m+n) 空間，O(1) 額外空間優化
 | 498 | [Diagonal Traverse](src/problems/medium/p498_diagonal_traverse.rs) | 模擬對角線遍歷 | O(mn) 時間, O(mn) 空間
 | 1504 | [Count Submatrices With All Ones](src/problems/medium/p1504_count_submatrices_with_all_ones.rs) | 高度數組 + 直方圖遍歷 | O(nm²) 時間, O(m) 空間
-| 2749 | [Minimum Operations to Make the Integer Zero](src/problems/medium/p2749_minimum_operations_to_make_the_integer_zero.rs) | 待實現 | 位操作 + 數學分析
+| 2749 | [Minimum Operations to Make the Integer Zero](src/problems/medium/p2749_minimum_operations_to_make_the_integer_zero.rs) | 位操作 + 數學分析 | O(60) 時間, O(1) 空間
 | 3195 | [Find the Minimum Area to Cover All Ones I](src/problems/medium/p3195_find_the_minimum_area_to_cover_all_ones_i.rs) | 邊界框算法 | O(mn) 時間, O(1) 空間
+| 3362 | [Zero Array Transformation III](src/problems/medium/p3362_zero_array_transformation_iii.rs) | 貪心 + 優先隊列 | O(n log n) 時間, O(n) 空間
 
 ### Hard
 
@@ -64,12 +66,12 @@ src/
 
 ## 統計
 
-* **總題目數**: 15
+* **總題目數**: 16
 * **Easy**: 6 題
-* **Medium**: 8 題  
+* **Medium**: 9 題  
 * **Hard**: 1 題
-* **已完成**: 14 題
-* **待實現**: 1 題
+* **已完成**: 16 題
+* **待實現**: 0 題
 
 ## 執行測試
 
@@ -204,3 +206,21 @@ println!("Memory: {} bytes", metrics.memory_size);
 * 狀態轉移方程：`paths[i][j] = top + left`（其中 top 和 left 考慮邊界情況）
 * 初始化策略：創建與輸入相同大小的 DP 表格，起始位置 (0,0) 設為 1
 * 時間複雜度：O(m×n)（遍歷所有格子），空間複雜度：O(m×n)（DP 表格存儲）
+
+### Minimum Operations to Make the Integer Zero (p2749)
+
+* 位操作 + 數學分析：基於二進制表示的組合問題，每次操作相當於選擇一個 2 的幂次
+* 核心思路：經過 k 次操作後，target = num1 - k*num2 必須能表示為 k 個 2 的幂次之和
+* 三個必要條件檢查：target > 0（正數），target ≥ k（最小值），popcount(target) ≤ k（二進制 1 的個數）
+* Popcount 計算：使用位運算逐位檢查，計算二進制表示中 1 的個數
+* 優化策略：限制操作次數上限為 60（2^60 超過 i32 範圍），提前終止不可能的情況
+* 時間複雜度：O(60)（固定迴圈上限），空間複雜度：O(1)（常數空間）
+
+### Zero Array Transformation III (p3362)
+
+* 貪心 + 優先隊列：使用貪心策略最大化移除的查詢數量，同時確保剩餘操作足以清零陣列
+* 差分陣列技術：使用 delta_array 追蹤區間操作的累積效果，高效處理範圍更新
+* 優先隊列管理：按查詢結束位置的最大堆，優先選擇能覆蓋更遠位置的操作
+* 動態決策：遍歷每個位置時，根據當前需求動態決定是否使用可用的查詢操作
+* 可行性檢查：如果某位置無法通過剩餘操作清零，直接返回 -1
+* 時間複雜度：O(n log n)（排序 + 堆操作），空間複雜度：O(n)（差分陣列 + 優先隊列）
