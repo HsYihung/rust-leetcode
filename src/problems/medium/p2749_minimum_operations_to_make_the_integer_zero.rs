@@ -30,7 +30,7 @@
 /// - -10^9 <= num2 <= 10^9
 #[allow(dead_code)]
 impl Solution {
-    pub fn minimum_operations_to_make_integer_zero(num1: i32, num2: i32) -> i32 {
+    pub fn make_the_integer_zero(num1: i32, num2: i32) -> i32 {
         // 早期終止：如果 num2 >= num1，每次操作都會增加或不變，永遠無法減到 0
         if num2 >= num1 {
             return -1;
@@ -85,11 +85,11 @@ mod tests {
 
         // 示例 1: num1 = 3, num2 = -2, 期望輸出 = 3
         // 解釋：3 -> 1 -> -1 -> 0，共需要 3 次操作
-        assert_eq!(Solution::minimum_operations_to_make_integer_zero(3, -2), 3);
+        assert_eq!(Solution::make_the_integer_zero(3, -2), 3);
 
         // 示例 2: num1 = 5, num2 = 7, 期望輸出 = -1
         // 解釋：無法通過操作使 5 變為 0
-        assert_eq!(Solution::minimum_operations_to_make_integer_zero(5, 7), -1);
+        assert_eq!(Solution::make_the_integer_zero(5, 7), -1);
     }
 
     #[test]
@@ -97,15 +97,15 @@ mod tests {
         // 邊界測試案例
 
         // num2 為 0 的情況：只能減去 2^i
-        assert_eq!(Solution::minimum_operations_to_make_integer_zero(1, 0), 1); // 減去 2^0 = 1
-        assert_eq!(Solution::minimum_operations_to_make_integer_zero(2, 0), 1); // 減去 2^1 = 2
-        assert_eq!(Solution::minimum_operations_to_make_integer_zero(4, 0), 1); // 減去 2^2 = 4
+        assert_eq!(Solution::make_the_integer_zero(1, 0), 1); // 減去 2^0 = 1
+        assert_eq!(Solution::make_the_integer_zero(2, 0), 1); // 減去 2^1 = 2
+        assert_eq!(Solution::make_the_integer_zero(4, 0), 1); // 減去 2^2 = 4
 
         // num1 為 1 的最小值情況
-        assert_eq!(Solution::minimum_operations_to_make_integer_zero(1, -1), 1); // 減去 2^0 + (-1) = 0
+        assert_eq!(Solution::make_the_integer_zero(1, -1), 1); // 減去 2^0 + (-1) = 0
 
         // num2 為負數的大值情況
-        assert_eq!(Solution::minimum_operations_to_make_integer_zero(10, -5), 2);
+        assert_eq!(Solution::make_the_integer_zero(10, -5), 2);
         // 可通過兩次操作達成
     }
 
@@ -114,25 +114,19 @@ mod tests {
         // 特殊情況測試案例
 
         // 當 num2 非常大且為正數時，可能無法減少到 0
-        assert_eq!(
-            Solution::minimum_operations_to_make_integer_zero(1, 1000000000),
-            -1
-        );
+        assert_eq!(Solution::make_the_integer_zero(1, 1000000000), -1);
 
         // 當 num1 較大但 num2 為負數時的情況
-        assert_eq!(
-            Solution::minimum_operations_to_make_integer_zero(100, -10),
-            3
-        ); // k=3: 100-3*(-10)=130, popcount(130)=2 ≤ 3
+        assert_eq!(Solution::make_the_integer_zero(100, -10), 3); // k=3: 100-3*(-10)=130, popcount(130)=2 ≤ 3
 
         // 特殊組合：num1 和 num2 相等
-        assert_eq!(Solution::minimum_operations_to_make_integer_zero(8, 8), -1); // 無法達成
+        assert_eq!(Solution::make_the_integer_zero(8, 8), -1); // 無法達成
 
         // num1 可以一次操作完成的情況
-        assert_eq!(Solution::minimum_operations_to_make_integer_zero(15, -1), 1); // 15 = 2^4 - 1 = 16 - 1
+        assert_eq!(Solution::make_the_integer_zero(15, -1), 1); // 15 = 2^4 - 1 = 16 - 1
 
         // 複雜的多步驟情況
-        assert_eq!(Solution::minimum_operations_to_make_integer_zero(25, -3), 3);
+        assert_eq!(Solution::make_the_integer_zero(25, -3), 3);
         // k=3: 25-3*(-3)=34, popcount(34)=2 ≤ 3
     }
 }
