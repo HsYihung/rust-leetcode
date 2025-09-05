@@ -36,18 +36,22 @@ impl Solution {
             return -1;
         }
 
+        // 使用 i64 避免溢出問題
+        let num1_i64 = num1 as i64;
+        let num2_i64 = num2 as i64;
+
         // 嘗試 1 到 60 次操作（2^60 已超過 i32 最大值，足夠覆蓋所有情況）
-        for k in 1..=60 {
+        for k in 1i64..=60 {
             // 計算經過 k 次操作後需要的目標值
             // target = num1 - k*num2 = 2^i₁ + 2^i₂ + ... + 2^iₖ
-            let target = num1 - k * num2;
+            let target = num1_i64 - k * num2_i64;
 
             // 檢查三個必要條件：
             // 1. target > 0: 必須為正數才能表示為 2 的冪次之和
             // 2. target >= k: 最小情況是 k 個 2^0 = k
             // 3. popcount(target) <= k: 二進制中 1 的個數不能超過操作次數
-            if target > 0 && target >= k && Self::popcount(target as i64) <= k {
-                return k;
+            if target > 0 && target >= k && Self::popcount(target) <= k as i32 {
+                return k as i32;
             }
         }
 
@@ -128,5 +132,8 @@ mod tests {
         // 複雜的多步驟情況
         assert_eq!(Solution::make_the_integer_zero(25, -3), 3);
         // k=3: 25-3*(-3)=34, popcount(34)=2 ≤ 3
+
+        // 測試大數值情況
+        assert_eq!(Solution::make_the_integer_zero(112577768, -501662198), 16);
     }
 }
