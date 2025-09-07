@@ -44,7 +44,7 @@ src/
 | 392  | [Is Subsequence](src/problems/easy/p392_is_subsequence.rs) | 雙指針 | O(n+m) 時間, O(1) 空間 |
 | 509  | [Fibonacci Number](src/problems/easy/p509_fibonacci_number.rs) | 矩陣快速冪 | O(log n) 時間, O(1) 空間 |
 | 338  | [Counting Bits](src/problems/easy/p338_counting_bits.rs) | 動態規劃 + 位操作 | O(n) 時間, O(1) 空間 |
-| 1304 | [Find N Unique Integers Sum up to Zero](src/problems/easy/p1304_find_n_unique_integers_sum_up_to_zero.rs) | 待實現 | 數學構造法 |
+| 1304 | [Find N Unique Integers Sum up to Zero](src/problems/easy/p1304_find_n_unique_integers_sum_up_to_zero.rs) | 數學構造法 | O(n) 時間, O(n) 空間 |
 | 1800 | [Maximum Ascending Subarray Sum](src/problems/easy/p1800_maximum_ascending_subarray_sum.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
 | 3174 | [Clear Digits](src/problems/easy/p3174_clear_digits.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
 | 3516 | [Find Closest Person](src/problems/easy/p3516_find_closest_person.rs) | 距離比較 | O(1) 時間, O(1) 空間 |
@@ -76,8 +76,8 @@ src/
 * **Easy**: 8 題
 * **Medium**: 9 題  
 * **Hard**: 2 題
-* **已完成**: 17 題
-* **待實現**: 2 題
+* **已完成**: 18 題
+* **待實現**: 1 題
 
 ## 執行測試
 
@@ -239,3 +239,12 @@ println!("Memory: {} bytes", metrics.memory_size);
 * 最優化解法：避免對每個數字重新計算位元數，直接利用子問題的結果加1
 * 線性時間算法：滿足題目進階要求，每個數字只需O(1)時間計算，避免O(n log n)暴力解法
 * 時間複雜度：O(n)（每個數字計算一次），空間複雜度：O(1)（除答案陣列外常數額外空間）
+
+### Find N Unique Integers Sum up to Zero (p1304)
+
+* 數學構造法：基於數學原理構造 n 個不同整數使其和為 0
+* 對稱分布策略：使用 `i - mid` 的方式生成對稱分布的整數序列
+* 偶數調整機制：當 n 為偶數時，對後半部分數字加 1 避免出現重複的 0
+* 特殊情況處理：n = 1 時直接返回 [0]，滿足唯一數字和為 0 的要求
+* 一次遍歷算法：線性時間內完成所有數字的計算和填充
+* 時間複雜度：O(n)（創建陣列 + 一次遍歷），空間複雜度：O(n)（結果陣列，無法優化）

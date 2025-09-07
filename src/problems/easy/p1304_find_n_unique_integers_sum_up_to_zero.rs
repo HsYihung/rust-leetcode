@@ -32,13 +32,28 @@
 /// - 數組中所有數字的和必須為 0
 #[allow(dead_code)]
 impl Solution {
-    pub fn sum_zero(_n: i32) -> Vec<i32> {
-        todo!("實現 Find N Unique Integers Sum up to Zero 的解決方案 - 請先理解題目和測試案例")
+    pub fn sum_zero(n: i32) -> Vec<i32> {
+        let mut result = vec![0; n as usize];
+
+        if n == 1 {
+            return result;
+        }
+
+        let mid = n / 2;
+
+        for i in 0..n {
+            result[i as usize] = i - mid;
+            if i >= mid && n % 2 == 0 {
+                result[i as usize] += 1
+            }
+        }
+
+        result
     }
 }
 
 #[allow(dead_code)]
-struct Solution;
+pub(crate) struct Solution;
 
 #[cfg(test)]
 mod tests {
