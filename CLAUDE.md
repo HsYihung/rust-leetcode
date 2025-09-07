@@ -64,6 +64,9 @@ Use these custom Claude Code commands for problem solving:
 - **/solution**: Provide complete, well-commented solution implementation with detailed explanation of the approach
 - **/big-o**: Analyze and explain time/space complexity of the problem or current solution, including best/average/worst case scenarios
 
+### Test Verification Command
+- **/test-verify**: Check if test cases are correct and comprehensive, including boundary conditions coverage and test quality analysis
+
 ### Solution Submission Command
 - **/submit**: Complete solution submission workflow - runs tests, formats code, checks with clippy, updates README.md, and commits changes
 
