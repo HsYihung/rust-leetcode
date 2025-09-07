@@ -41,11 +41,13 @@ impl Solution {
 
         let mid = n / 2;
 
-        for i in 0..n {
-            result[i as usize] = i - mid;
-            if i >= mid && n % 2 == 0 {
-                result[i as usize] += 1
-            }
+        for i in 0..mid {
+            result[i as usize] = i + 1;
+            result[(n - 1 - i) as usize] = -(i + 1);
+        }
+
+        if n % 2 == 1 {
+            result[mid as usize] = 0
         }
 
         result
