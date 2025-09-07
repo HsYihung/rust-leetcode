@@ -42,6 +42,7 @@ src/
 | 1    | [Two Sum](src/problems/easy/p0001_two_sum.rs) | HashMap | O(n) 時間, O(n) 空間 |
 | 392  | [Is Subsequence](src/problems/easy/p392_is_subsequence.rs) | 雙指針 | O(n+m) 時間, O(1) 空間 |
 | 509  | [Fibonacci Number](src/problems/easy/p509_fibonacci_number.rs) | 矩陣快速冪 | O(log n) 時間, O(1) 空間 |
+| 338  | [Counting Bits](src/problems/easy/p338_counting_bits.rs) | 待實現 | 位操作 + 動態規劃 |
 | 1304 | [Find N Unique Integers Sum up to Zero](src/problems/easy/p1304_find_n_unique_integers_sum_up_to_zero.rs) | 待實現 | 數學構造法 |
 | 1800 | [Maximum Ascending Subarray Sum](src/problems/easy/p1800_maximum_ascending_subarray_sum.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
 | 3174 | [Clear Digits](src/problems/easy/p3174_clear_digits.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
@@ -70,12 +71,12 @@ src/
 
 ## 統計
 
-* **總題目數**: 18
-* **Easy**: 7 題
+* **總題目數**: 19
+* **Easy**: 8 題
 * **Medium**: 9 題  
 * **Hard**: 2 題
 * **已完成**: 16 題
-* **待實現**: 2 題
+* **待實現**: 3 題
 
 ## 執行測試
 
