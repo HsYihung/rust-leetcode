@@ -6,9 +6,9 @@ description: Automatically fetch LeetCode problem and create template with Chine
 
 幫我執行完整的 LeetCode 問題 $2 自動化設置流程：
 
-**步驟一** 🌐 使用 lynx 瀏覽器開啟 https://algo.monster/liteproblems/$2 網站，並且只載入文字部分，不要載入任何圖片或影片
+**步驟一** 🌐 使用 lynx 瀏覽器開啟 https://algo.monster/liteproblems/$2 網站，並且將所有文字部分到 ./problem-src 資料夾下 建立 $2.md 文字檔
 
-**步驟二** 🔍 分析題目內容，提取完整信息（標題、難度、描述、示例、限制條件）
+**步驟二** 🔍 從 $2.md 分析題目內容，提取完整信息（標題、難度、描述、示例、限制條件）
 
 **步驟三** 📝 使用 `./scripts/add_problem.sh <number> <title> <difficulty>` 生成樣板題目
 
