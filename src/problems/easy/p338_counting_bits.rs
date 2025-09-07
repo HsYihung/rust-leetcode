@@ -38,8 +38,14 @@
 /// - 空間複雜度除了答案陣列之外，你的解法空間複雜度應該是 O(1)
 #[allow(dead_code)]
 impl Solution {
-    pub fn count_bits(_n: i32) -> Vec<i32> {
-        todo!("實現 Counting Bits 的解決方案 - 請先理解題目和測試案例")
+    pub fn count_bits(n: i32) -> Vec<i32> {
+        let mut result = vec![0; (n + 1) as usize];
+
+        for i in 1..=n {
+            result[i as usize] = result[(i & (i - 1)) as usize] + 1;
+        }
+
+        result
     }
 }
 

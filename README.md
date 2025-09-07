@@ -12,6 +12,7 @@ src/
 └── problems/
     ├── easy/
     │   ├── p0001_two_sum.rs
+    │   ├── p338_counting_bits.rs
     │   ├── p392_is_subsequence.rs
     │   ├── p509_fibonacci_number.rs
     │   ├── p1304_find_n_unique_integers_sum_up_to_zero.rs
@@ -42,7 +43,7 @@ src/
 | 1    | [Two Sum](src/problems/easy/p0001_two_sum.rs) | HashMap | O(n) 時間, O(n) 空間 |
 | 392  | [Is Subsequence](src/problems/easy/p392_is_subsequence.rs) | 雙指針 | O(n+m) 時間, O(1) 空間 |
 | 509  | [Fibonacci Number](src/problems/easy/p509_fibonacci_number.rs) | 矩陣快速冪 | O(log n) 時間, O(1) 空間 |
-| 338  | [Counting Bits](src/problems/easy/p338_counting_bits.rs) | 待實現 | 位操作 + 動態規劃 |
+| 338  | [Counting Bits](src/problems/easy/p338_counting_bits.rs) | 動態規劃 + 位操作 | O(n) 時間, O(1) 空間 |
 | 1304 | [Find N Unique Integers Sum up to Zero](src/problems/easy/p1304_find_n_unique_integers_sum_up_to_zero.rs) | 待實現 | 數學構造法 |
 | 1800 | [Maximum Ascending Subarray Sum](src/problems/easy/p1800_maximum_ascending_subarray_sum.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
 | 3174 | [Clear Digits](src/problems/easy/p3174_clear_digits.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
@@ -75,8 +76,8 @@ src/
 * **Easy**: 8 題
 * **Medium**: 9 題  
 * **Hard**: 2 題
-* **已完成**: 16 題
-* **待實現**: 3 題
+* **已完成**: 17 題
+* **待實現**: 2 題
 
 ## 執行測試
 
@@ -229,3 +230,12 @@ println!("Memory: {} bytes", metrics.memory_size);
 * 動態決策：遍歷每個位置時，根據當前需求動態決定是否使用可用的查詢操作
 * 可行性檢查：如果某位置無法通過剩餘操作清零，直接返回 -1
 * 時間複雜度：O(n log n)（排序 + 堆操作），空間複雜度：O(n)（差分陣列 + 優先隊列）
+
+### Counting Bits (p338)
+
+* 動態規劃 + 位操作技巧：利用 `i & (i-1)` 移除最右邊的1，基於已計算結果構建新結果
+* 核心狀態轉移：`dp[i] = dp[i & (i-1)] + 1`，其中 `i & (i-1)` 得到移除最右邊1後的數字
+* 位元操作原理：當計算 `i-1` 時，最右邊的1變為0，該位右邊所有0變為1，AND運算後移除最右邊的1
+* 最優化解法：避免對每個數字重新計算位元數，直接利用子問題的結果加1
+* 線性時間算法：滿足題目進階要求，每個數字只需O(1)時間計算，避免O(n log n)暴力解法
+* 時間複雜度：O(n)（每個數字計算一次），空間複雜度：O(1)（除答案陣列外常數額外空間）
