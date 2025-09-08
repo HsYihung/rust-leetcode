@@ -40,8 +40,65 @@
 /// - 0 <= s.length, p.length <= 2000
 #[allow(dead_code)]
 impl Solution {
-    pub fn is_match(_s: String, _p: String) -> bool {
-        todo!("實現 Wildcard Matching 的解決方案 - 請先理解題目和測試案例")
+    pub fn is_match(s: String, p: String) -> bool {
+        let s_chars: Vec<char> = s.chars().collect();
+        let p_chars: Vec<char> = p.chars().collect();
+        let s_len = s_chars.len();
+        let p_len = p_chars.len();
+
+        // Step 1: 創建 DP 表格
+        // dp[i][j] 表示 s[0..i] 與 p[0..j] 是否匹配
+        let mut dp = vec![vec![false; p_len + 1]; s_len + 1];
+
+        // Step 2: 初始化邊界條件
+        // 空字符串與空模式匹配
+        dp[0][0] = true;
+
+        // 處理模式開頭的 '*' 字符
+        // '*' 可以匹配空字符串，所以需要設置相應的狀態
+        for j in 1..=p_len {
+            if p_chars[j - 1] == '*' {
+                dp[0][j] = dp[0][j - 1];
+            }
+        }
+
+        // Step 3: 動態規劃狀態轉移
+        for i in 1..=s_len {
+            for j in 1..=p_len {
+                let s_char = s_chars[i - 1];
+                let p_char = p_chars[j - 1];
+
+                match p_char {
+                    // 情況 1: 模式字符是普通字符，必須完全匹配
+                    c if c != '?' && c != '*' => {
+                        dp[i][j] = s_char == p_char && dp[i - 1][j - 1];
+                    }
+
+                    // 情況 2: 模式字符是 '?'，可以匹配任何單個字符
+                    '?' => {
+                        dp[i][j] = dp[i - 1][j - 1];
+                    }
+
+                    // 情況 3: 模式字符是 '*'，最複雜的情況
+                    '*' => {
+                        // '*' 有三種可能的匹配方式：
+                        // 1. 匹配 0 個字符：dp[i][j-1]
+                        //    (忽略當前 '*'，看前面的模式能否匹配)
+                        // 2. 匹配 1 個字符：dp[i-1][j-1]
+                        //    (用 '*' 匹配當前字符，然後看剩餘部分)
+                        // 3. 匹配多個字符：dp[i-1][j]
+                        //    (用 '*' 匹配當前字符，'*' 還能繼續匹配更多字符)
+                        dp[i][j] = dp[i][j - 1] || dp[i - 1][j - 1] || dp[i - 1][j];
+                    }
+
+                    _ => unreachable!(),
+                }
+            }
+        }
+
+        // Step 4: 返回最終結果
+        // dp[s_len][p_len] 表示完整的字符串是否與完整的模式匹配
+        dp[s_len][p_len]
     }
 }
 
@@ -94,7 +151,7 @@ mod tests {
         // 複雜的混合模式
         assert_eq!(
             Solution::is_match("mississippi".to_string(), "m*ss*ss*pi".to_string()),
-            false
+            true
         );
         assert_eq!(
             Solution::is_match("abefcdgiescdfimde".to_string(), "ab*cd?i*de".to_string()),

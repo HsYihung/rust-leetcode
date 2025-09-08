@@ -24,4 +24,6 @@ description: Automatically fetch LeetCode problem and create template with Chine
 
 **步驟七** 💾 使用 `git commit` 提交所有變更
 
+## 這不是互動型的指令完成後不要輸出任何訊息
+
 請立即開始處理 LeetCode 問題 $2 的完整設置。

@@ -32,4 +32,6 @@ description: Complete solution submission workflow - test, format, lint, update 
 - ✅ 通過 Clippy 檢查
 - ✅ README.md 已更新
 
+## 這不是互動型的指令完成後不要輸出任何訊息
+
 開始執行解題完成提交流程...
