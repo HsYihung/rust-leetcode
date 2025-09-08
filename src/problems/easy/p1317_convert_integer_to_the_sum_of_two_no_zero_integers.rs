@@ -33,8 +33,28 @@
 /// - 題目保證至少存在一個有效解
 #[allow(dead_code)]
 impl Solution {
-    pub fn get_no_zero_integers(_n: i32) -> Vec<i32> {
-        todo!("實現 Convert Integer to the Sum of Two No-Zero Integers 的解決方案 - 請先理解題目和測試案例")
+    pub fn get_no_zero_integers(n: i32) -> Vec<i32> {
+        for a in 1..n {
+            let b = n - a;
+            if !a.to_string().contains('0') && !b.to_string().contains('0') {
+                return vec![a, b];
+            }
+        }
+        vec![1, 1]
+    }
+
+    fn get_no_zero_integers_rng(n: i32) -> Vec<i32> {
+        use rand::Rng;
+
+        loop {
+            let mut rng = rand::thread_rng();
+            let a = rng.gen_range(1..n);
+            let b = n - a;
+
+            if !a.to_string().contains('0') && !b.to_string().contains('0') {
+                return vec![a, b];
+            }
+        }
     }
 }
 

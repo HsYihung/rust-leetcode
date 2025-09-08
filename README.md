@@ -47,7 +47,7 @@ src/
 | 509  | [Fibonacci Number](src/problems/easy/p509_fibonacci_number.rs) | 矩陣快速冪 | O(log n) 時間, O(1) 空間 |
 | 338  | [Counting Bits](src/problems/easy/p338_counting_bits.rs) | 動態規劃 + 位操作 | O(n) 時間, O(1) 空間 |
 | 1304 | [Find N Unique Integers Sum up to Zero](src/problems/easy/p1304_find_n_unique_integers_sum_up_to_zero.rs) | 數學構造法 | O(n) 時間, O(n) 空間 |
-| 1317 | [Convert Integer to the Sum of Two No-Zero Integers](src/problems/easy/p1317_convert_integer_to_the_sum_of_two_no_zero_integers.rs) | 待實現 | 遍歷分解 + 無零檢查 |
+| 1317 | [Convert Integer to the Sum of Two No-Zero Integers](src/problems/easy/p1317_convert_integer_to_the_sum_of_two_no_zero_integers.rs) | 順序遍歷 + 隨機解法 | O(n) 時間, O(1) 空間 |
 | 1800 | [Maximum Ascending Subarray Sum](src/problems/easy/p1800_maximum_ascending_subarray_sum.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
 | 3174 | [Clear Digits](src/problems/easy/p3174_clear_digits.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
 | 3516 | [Find Closest Person](src/problems/easy/p3516_find_closest_person.rs) | 距離比較 | O(1) 時間, O(1) 空間 |
@@ -80,8 +80,8 @@ src/
 * **Easy**: 9 題
 * **Medium**: 10 題  
 * **Hard**: 2 題
-* **已完成**: 20 題
-* **待實現**: 1 題
+* **已完成**: 21 題
+* **待實現**: 0 題
 
 ## 執行測試
 
@@ -271,3 +271,12 @@ println!("Memory: {} bytes", metrics.memory_size);
 * 提前終止機制：找到完全匹配的三數和時立即返回，避免不必要的後續搜索
 * 邊界處理：正確處理索引重複、陣列邊界，以及各種極端輸入情況
 * 時間複雜度：O(n²)（理論最優），空間複雜度：O(1)（原地排序，常數額外空間）
+
+### Convert Integer to the Sum of Two No-Zero Integers (p1317)
+
+* 雙解法實現：提供順序遍歷和隨機生成兩種不同的解決方案，展示不同的算法思路
+* 順序遍歷法：從 1 到 n-1 依序檢查每個可能的 a 值，計算 b = n - a，檢查兩數是否都不含 0
+* 隨機生成法：使用隨機數生成器產生候選解，重複直到找到有效的無零整數對
+* 無零檢查：使用字符串轉換和 contains('0') 方法高效檢查數字是否包含 0
+* 算法保證：題目保證解存在，順序遍歷必定找到解，隨機法期望很快收斂
+* 時間複雜度：O(n) 順序遍歷最壞情況，O(1) 隨機法期望，空間複雜度：O(1)（常數額外空間）

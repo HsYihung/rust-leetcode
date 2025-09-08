@@ -7,6 +7,7 @@ description = "LeetCode solutions implemented in Rust"
 license = "MIT"
 
 [dependencies]
+rand = "0.8"
 
 [dev-dependencies]
 
