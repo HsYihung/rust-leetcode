@@ -109,7 +109,7 @@ impl Solution {
 }
 
 #[allow(dead_code)]
-pub(crate) struct Solution;
+struct Solution;
 
 #[cfg(test)]
 mod tests {
