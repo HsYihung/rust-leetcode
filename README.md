@@ -17,6 +17,7 @@ src/
     │   ├── p509_fibonacci_number.rs
     │   ├── p1304_find_n_unique_integers_sum_up_to_zero.rs
     │   ├── p1800_maximum_ascending_subarray_sum.rs
+    │   ├── p1317_convert_integer_to_the_sum_of_two_no_zero_integers.rs
     │   ├── p3174_clear_digits.rs
     │   └── p3516_find_closest_person.rs
     ├── medium/
@@ -46,6 +47,7 @@ src/
 | 509  | [Fibonacci Number](src/problems/easy/p509_fibonacci_number.rs) | 矩陣快速冪 | O(log n) 時間, O(1) 空間 |
 | 338  | [Counting Bits](src/problems/easy/p338_counting_bits.rs) | 動態規劃 + 位操作 | O(n) 時間, O(1) 空間 |
 | 1304 | [Find N Unique Integers Sum up to Zero](src/problems/easy/p1304_find_n_unique_integers_sum_up_to_zero.rs) | 數學構造法 | O(n) 時間, O(n) 空間 |
+| 1317 | [Convert Integer to the Sum of Two No-Zero Integers](src/problems/easy/p1317_convert_integer_to_the_sum_of_two_no_zero_integers.rs) | 待實現 | 遍歷分解 + 無零檢查 |
 | 1800 | [Maximum Ascending Subarray Sum](src/problems/easy/p1800_maximum_ascending_subarray_sum.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
 | 3174 | [Clear Digits](src/problems/easy/p3174_clear_digits.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
 | 3516 | [Find Closest Person](src/problems/easy/p3516_find_closest_person.rs) | 距離比較 | O(1) 時間, O(1) 空間 |
@@ -74,12 +76,12 @@ src/
 
 ## 統計
 
-* **總題目數**: 20
-* **Easy**: 8 題
+* **總題目數**: 21
+* **Easy**: 9 題
 * **Medium**: 10 題  
 * **Hard**: 2 題
 * **已完成**: 20 題
-* **待實現**: 0 題
+* **待實現**: 1 題
 
 ## 執行測試
 

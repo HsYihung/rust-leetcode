@@ -1,5 +1,6 @@
 pub mod p0001_two_sum;
 pub mod p1304_find_n_unique_integers_sum_up_to_zero;
+pub mod p1317_convert_integer_to_the_sum_of_two_no_zero_integers;
 pub mod p1800_maximum_ascending_subarray_sum;
 pub mod p3174_clear_digits;
 pub mod p338_counting_bits;
