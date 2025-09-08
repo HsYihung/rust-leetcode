@@ -55,7 +55,7 @@ src/
 | #   | 題目 | 解法 | 備註 |
 |-----|------|------|------|
 | 8   | [String to Integer (atoi)](src/problems/medium/p8_string_to_integer_atoi_.rs) | 字符串解析 + 溢出檢查 | O(n) 時間, O(1) 空間
-| 16  | [3Sum Closest](src/problems/medium/p16_3sum_closest.rs) | 待實現 | 排序 + 雙指針技術 |
+| 16  | [3Sum Closest](src/problems/medium/p16_3sum_closest.rs) | 雙指針 + 二分搜索優化 | O(n²) 時間, O(1) 空間 |
 | 62  | [Unique Paths](src/problems/medium/p62_unique_paths.rs) | 組合數學 | O(min(m,n)) 時間, O(1) 空間 |
 | 63  | [Unique Paths II](src/problems/medium/p63_unique_paths_ii.rs) | 動態規劃 | O(mn) 時間, O(mn) 空間 |
 | 73  | [Set Matrix Zeroes](src/problems/medium/p73_set_matrix_zeroes.rs) | 原地標記法 | O(m+n) 空間，O(1) 額外空間優化
@@ -78,8 +78,8 @@ src/
 * **Easy**: 8 題
 * **Medium**: 10 題  
 * **Hard**: 2 題
-* **已完成**: 19 題
-* **待實現**: 1 題
+* **已完成**: 20 題
+* **待實現**: 0 題
 
 ## 執行測試
 
@@ -260,3 +260,12 @@ println!("Memory: {} bytes", metrics.memory_size);
 * 狀態轉移：普通字符需完全匹配，'?' 直接轉移，'*' 考慮三種情況（匹配0個、1個、多個字符）
 * 邊界初始化：空字符串與空模式匹配，處理模式開頭的連續 '*' 字符
 * 時間複雜度：O(m×n)（m 為字符串長度，n 為模式長度），空間複雜度：O(m×n)（DP 表格）
+
+### 3Sum Closest (p16)
+
+* 雙指針 + 二分搜索優化：結合排序、雙指針技術和二分搜索預優化，達到接近最優的實際性能
+* 三層結構：外層固定第一個元素，中層使用二分搜索找到最佳雙指針起始位置，內層執行標準雙指針搜索
+* 二分搜索優化：根據當前三數和與目標的關係，智能定位雙指針的最佳起始範圍，減少無效移動
+* 提前終止機制：找到完全匹配的三數和時立即返回，避免不必要的後續搜索
+* 邊界處理：正確處理索引重複、陣列邊界，以及各種極端輸入情況
+* 時間複雜度：O(n²)（理論最優），空間複雜度：O(1)（原地排序，常數額外空間）
