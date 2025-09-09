@@ -47,13 +47,36 @@
 /// - 1 <= delay < forget <= n
 #[allow(dead_code)]
 impl Solution {
-    pub fn people_aware_of_secret(_n: i32, _delay: i32, _forget: i32) -> i32 {
-        todo!("實現 Number of People Aware of a Secret 的解決方案 - 請先理解題目和測試案例")
+    pub fn people_aware_of_secret(n: i32, delay: i32, forget: i32) -> i32 {
+        const MOD: i64 = 1_000_000_007;
+        let mut share = 0i64;
+        let mut dp = vec![0i64; n as usize];
+        dp[0] = 1;
+
+        for i in 1..n as usize {
+            if i >= delay as usize {
+                share = (share + dp[i - delay as usize]) % MOD;
+            }
+            if i >= forget as usize {
+                share = (share - dp[i - forget as usize] + MOD) % MOD;
+            }
+            dp[i] = share;
+        }
+
+        let start = (n as usize).saturating_sub(forget as usize);
+
+        let result = dp
+            .iter()
+            .skip(start)
+            .take(n as usize - start)
+            .fold(0i64, |acc, &val| (acc + val) % MOD);
+
+        result as i32
     }
 }
 
 #[allow(dead_code)]
-struct Solution;
+pub(crate) struct Solution;
 
 #[cfg(test)]
 mod tests {
@@ -78,10 +101,10 @@ mod tests {
         assert_eq!(Solution::people_aware_of_secret(5, 1, 5), 16);
 
         // 較大的n值
-        assert_eq!(Solution::people_aware_of_secret(100, 5, 10), 954);
+        assert_eq!(Solution::people_aware_of_secret(100, 5, 10), 108223204);
 
         // delay接近forget的情況
-        assert_eq!(Solution::people_aware_of_secret(10, 4, 5), 4);
+        assert_eq!(Solution::people_aware_of_secret(10, 4, 5), 1);
     }
 
     #[test]
@@ -90,24 +113,24 @@ mod tests {
 
         // delay=1的情況（立即可以分享）
         assert_eq!(Solution::people_aware_of_secret(3, 1, 3), 4);
-        assert_eq!(Solution::people_aware_of_secret(5, 1, 4), 12);
+        assert_eq!(Solution::people_aware_of_secret(5, 1, 4), 14);
 
         // forget很大的情況（很久才忘記）
-        assert_eq!(Solution::people_aware_of_secret(10, 2, 10), 127);
+        assert_eq!(Solution::people_aware_of_secret(10, 2, 10), 55);
 
         // 中等規模測試
-        assert_eq!(Solution::people_aware_of_secret(20, 3, 8), 265);
-        assert_eq!(Solution::people_aware_of_secret(50, 5, 15), 953);
+        assert_eq!(Solution::people_aware_of_secret(20, 3, 8), 520);
+        assert_eq!(Solution::people_aware_of_secret(50, 5, 15), 352858);
 
         // 測試模數運算
-        assert_eq!(Solution::people_aware_of_secret(1000, 1, 1000), 999919993);
+        assert_eq!(Solution::people_aware_of_secret(1000, 1, 1000), 344211605);
 
         // delay和forget差距較小的情況
-        assert_eq!(Solution::people_aware_of_secret(15, 5, 7), 14);
-        assert_eq!(Solution::people_aware_of_secret(8, 2, 4), 7);
+        assert_eq!(Solution::people_aware_of_secret(15, 5, 7), 4);
+        assert_eq!(Solution::people_aware_of_secret(8, 2, 4), 8);
 
         // 各種組合測試
-        assert_eq!(Solution::people_aware_of_secret(12, 3, 6), 18);
-        assert_eq!(Solution::people_aware_of_secret(7, 1, 4), 22);
+        assert_eq!(Solution::people_aware_of_secret(12, 3, 6), 19);
+        assert_eq!(Solution::people_aware_of_secret(7, 1, 4), 48);
     }
 }

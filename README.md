@@ -60,7 +60,7 @@ src/
 | 8   | [String to Integer (atoi)](src/problems/medium/p8_string_to_integer_atoi_.rs) | 字符串解析 + 溢出檢查 | O(n) 時間, O(1) 空間
 | 16  | [3Sum Closest](src/problems/medium/p16_3sum_closest.rs) | 雙指針 + 二分搜索優化 | O(n²) 時間, O(1) 空間 |
 | 62  | [Unique Paths](src/problems/medium/p62_unique_paths.rs) | 組合數學 | O(min(m,n)) 時間, O(1) 空間 |
-| 2327 | [Number of People Aware of a Secret](src/problems/medium/p2327_number_of_people_aware_of_a_secret.rs) | 待實現 | 動態規劃 + 模擬 |
+| 2327 | [Number of People Aware of a Secret](src/problems/medium/p2327_number_of_people_aware_of_a_secret.rs) | 滑動窗口 + 動態規劃 | O(n) 時間, O(n) 空間 |
 | 63  | [Unique Paths II](src/problems/medium/p63_unique_paths_ii.rs) | 動態規劃 | O(mn) 時間, O(mn) 空間 |
 | 73  | [Set Matrix Zeroes](src/problems/medium/p73_set_matrix_zeroes.rs) | 原地標記法 | O(m+n) 空間，O(1) 額外空間優化
 | 498 | [Diagonal Traverse](src/problems/medium/p498_diagonal_traverse.rs) | 模擬對角線遍歷 | O(mn) 時間, O(mn) 空間
@@ -82,8 +82,8 @@ src/
 * **Easy**: 9 題
 * **Medium**: 11 題  
 * **Hard**: 2 題
-* **已完成**: 21 題
-* **待實現**: 1 題
+* **已完成**: 22 題
+* **待實現**: 0 題
 
 ## 執行測試
 
@@ -282,3 +282,13 @@ println!("Memory: {} bytes", metrics.memory_size);
 * 無零檢查：使用字符串轉換和 contains('0') 方法高效檢查數字是否包含 0
 * 算法保證：題目保證解存在，順序遍歷必定找到解，隨機法期望很快收斂
 * 時間複雜度：O(n) 順序遍歷最壞情況，O(1) 隨機法期望，空間複雜度：O(1)（常數額外空間）
+
+### Number of People Aware of a Secret (p2327)
+
+* 滑動窗口優化動態規劃：使用滑動窗口技術維護當前可分享秘密的人數總和，避免重複計算
+* 核心思路：每天計算新知道秘密的人數，基於延遲分享和遺忘規則動態更新分享窗口
+* 狀態轉移：`share` 變量追蹤當前分享者總數，`dp[i]` 記錄第i天新發現秘密的人數
+* 分享窗口管理：delay天後加入新分享者，forget天後移除忘記的分享者
+* 結果計算：統計最後forget天內發現秘密的所有人數（未忘記的人群）
+* 模數運算：使用 1e9+7 模數避免大數溢出，處理負數情況確保結果正確性
+* 時間複雜度：O(n)（線性掃描 + 常數窗口操作），空間複雜度：O(n)（DP陣列存儲）
