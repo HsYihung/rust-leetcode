@@ -25,6 +25,7 @@ src/
     │   ├── p16_3sum_closest.rs
     │   ├── p62_unique_paths.rs
     │   ├── p63_unique_paths_ii.rs
+    │   ├── p2327_number_of_people_aware_of_a_secret.rs
     │   ├── p73_set_matrix_zeroes.rs
     │   ├── p498_diagonal_traverse.rs
     │   ├── p1504_count_submatrices_with_all_ones.rs
@@ -59,6 +60,7 @@ src/
 | 8   | [String to Integer (atoi)](src/problems/medium/p8_string_to_integer_atoi_.rs) | 字符串解析 + 溢出檢查 | O(n) 時間, O(1) 空間
 | 16  | [3Sum Closest](src/problems/medium/p16_3sum_closest.rs) | 雙指針 + 二分搜索優化 | O(n²) 時間, O(1) 空間 |
 | 62  | [Unique Paths](src/problems/medium/p62_unique_paths.rs) | 組合數學 | O(min(m,n)) 時間, O(1) 空間 |
+| 2327 | [Number of People Aware of a Secret](src/problems/medium/p2327_number_of_people_aware_of_a_secret.rs) | 待實現 | 動態規劃 + 模擬 |
 | 63  | [Unique Paths II](src/problems/medium/p63_unique_paths_ii.rs) | 動態規劃 | O(mn) 時間, O(mn) 空間 |
 | 73  | [Set Matrix Zeroes](src/problems/medium/p73_set_matrix_zeroes.rs) | 原地標記法 | O(m+n) 空間，O(1) 額外空間優化
 | 498 | [Diagonal Traverse](src/problems/medium/p498_diagonal_traverse.rs) | 模擬對角線遍歷 | O(mn) 時間, O(mn) 空間
@@ -76,12 +78,12 @@ src/
 
 ## 統計
 
-* **總題目數**: 21
+* **總題目數**: 22
 * **Easy**: 9 題
-* **Medium**: 10 題  
+* **Medium**: 11 題  
 * **Hard**: 2 題
 * **已完成**: 21 題
-* **待實現**: 0 題
+* **待實現**: 1 題
 
 ## 執行測試
 
