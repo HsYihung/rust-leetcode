@@ -35,7 +35,8 @@ description: 檢驗測試案例是否正確，通過實現標準解答來驗證�
 
 ### 步驟 5: 清理驗證環境 🧹
 - 刪除複製出來的檔案
-- 復原 ./src/test_verify/mod.rs
+- 不要刪除 ./src/test_verify/mod.rs
+- 清空 ./src/test_verify/mod.rs 內容
 
 ## 🎯 檢驗保證
 
