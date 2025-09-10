@@ -31,13 +31,40 @@
 /// - 所有點都是唯一的
 #[allow(dead_code)]
 impl Solution {
-    pub fn number_of_points_in_the_rectangle(_points: Vec<Vec<i32>>) -> i32 {
-        todo!("實現 Find the Number of Ways to Place People I 的解決方案 - 請先理解題目和測試案例")
+    pub fn number_of_pairs(mut points: Vec<Vec<i32>>) -> i32 {
+        let mut result = 0;
+        points.sort_by(|a, b| {
+            if a[0] != b[0] {
+                a[0].cmp(&b[0])
+            } else {
+                b[1].cmp(&a[1])
+            }
+        });
+
+        // 優化解法：O(n^2) 時間複雜度
+        for i in 0..points.len() - 1 {
+            let point_a = &points[i];
+            let mut max_y = i32::MIN;
+
+            // 由於排序，j > i 的點x坐標都 >= points[i].x
+            for point_b in points.iter().skip(i + 1) {
+                if point_a[1] >= point_b[1] {
+                    // 關鍵優化：利用max_y避免重複檢查被阻擋的矩形
+                    // 如果當前點j的y坐標比之前找到的有效點都要小（更靠下），
+                    // 那麼它不會被之前的點阻擋
+                    if point_b[1] > max_y {
+                        result += 1;
+                        max_y = point_b[1];
+                    }
+                }
+            }
+        }
+
+        result
     }
 }
-
 #[allow(dead_code)]
-struct Solution;
+pub(crate) struct Solution;
 
 #[cfg(test)]
 mod tests {
@@ -47,13 +74,13 @@ mod tests {
     fn test_basic_cases() {
         // 示例 1：points = [[1,1],[2,2],[3,3]]
         assert_eq!(
-            Solution::number_of_points_in_the_rectangle(vec![vec![1, 1], vec![2, 2], vec![3, 3]]),
+            Solution::number_of_pairs(vec![vec![1, 1], vec![2, 2], vec![3, 3]]),
             0
         );
 
         // 示例 2：points = [[6,2],[4,4],[2,6]]
         assert_eq!(
-            Solution::number_of_points_in_the_rectangle(vec![vec![6, 2], vec![4, 4], vec![2, 6]]),
+            Solution::number_of_pairs(vec![vec![6, 2], vec![4, 4], vec![2, 6]]),
             2
         );
     }
@@ -61,26 +88,18 @@ mod tests {
     #[test]
     fn test_edge_cases() {
         // 邊界案例：只有兩個點
-        assert_eq!(
-            Solution::number_of_points_in_the_rectangle(vec![vec![0, 1], vec![1, 0]]),
-            1
-        );
+        assert_eq!(Solution::number_of_pairs(vec![vec![0, 1], vec![1, 0]]), 1);
 
         // 邊界案例：所有點在同一條線上
         assert_eq!(
-            Solution::number_of_points_in_the_rectangle(vec![vec![1, 1], vec![2, 1], vec![3, 1]]),
-            0
+            Solution::number_of_pairs(vec![vec![1, 1], vec![2, 1], vec![3, 1]]),
+            2
         );
 
         // 邊界案例：點形成正方形
         assert_eq!(
-            Solution::number_of_points_in_the_rectangle(vec![
-                vec![0, 2],
-                vec![2, 2],
-                vec![0, 0],
-                vec![2, 0]
-            ]),
-            2
+            Solution::number_of_pairs(vec![vec![0, 2], vec![2, 2], vec![0, 0], vec![2, 0]]),
+            4
         );
     }
 
@@ -88,13 +107,13 @@ mod tests {
     fn test_corner_cases() {
         // 特殊情況：重疊的矩形
         assert_eq!(
-            Solution::number_of_points_in_the_rectangle(vec![vec![1, 3], vec![2, 2], vec![3, 1]]),
-            1
+            Solution::number_of_pairs(vec![vec![1, 3], vec![2, 2], vec![3, 1]]),
+            2
         );
 
         // 特殊情況：複雜的點配置
         assert_eq!(
-            Solution::number_of_points_in_the_rectangle(vec![
+            Solution::number_of_pairs(vec![
                 vec![0, 0],
                 vec![1, 1],
                 vec![2, 2],
@@ -102,13 +121,13 @@ mod tests {
                 vec![1, 3],
                 vec![3, 1]
             ]),
-            2
+            6
         );
 
         // 特殊情況：所有點都不能形成有效矩形
         assert_eq!(
-            Solution::number_of_points_in_the_rectangle(vec![vec![0, 0], vec![0, 1], vec![1, 0]]),
-            1
+            Solution::number_of_pairs(vec![vec![0, 0], vec![0, 1], vec![1, 0]]),
+            2
         );
     }
 }

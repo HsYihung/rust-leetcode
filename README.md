@@ -69,7 +69,7 @@ src/
 | 1504 | [Count Submatrices With All Ones](src/problems/medium/p1504_count_submatrices_with_all_ones.rs) | 高度數組 + 直方圖遍歷 | O(nm²) 時間, O(m) 空間
 | 1733 | [Minimum Number of People to Teach](src/problems/medium/p1733_minimum_number_of_people_to_teach.rs) | 貪心算法 + 集合操作 | O(L + F×n + n×m) 時間, O(L + m) 空間 |
 | 2749 | [Minimum Operations to Make the Integer Zero](src/problems/medium/p2749_minimum_operations_to_make_the_integer_zero.rs) | 位操作 + 數學分析 | O(60) 時間, O(1) 空間
-| 3025 | [Find the Number of Ways to Place People I](src/problems/medium/p3025_find_the_number_of_ways_to_place_people_i.rs) | 待實現 | - |
+| 3025 | [Find the Number of Ways to Place People I](src/problems/medium/p3025_find_the_number_of_ways_to_place_people_i.rs) | 排序 + 掃描線優化 | O(n²) 時間, O(1) 空間 |
 | 3195 | [Find the Minimum Area to Cover All Ones I](src/problems/medium/p3195_find_the_minimum_area_to_cover_all_ones_i.rs) | 邊界框算法 | O(mn) 時間, O(1) 空間
 | 3362 | [Zero Array Transformation III](src/problems/medium/p3362_zero_array_transformation_iii.rs) | 貪心 + 優先隊列 | O(n log n) 時間, O(n) 空間
 
@@ -86,8 +86,8 @@ src/
 * **Easy**: 9 題
 * **Medium**: 13 題  
 * **Hard**: 2 題
-* **已完成**: 23 題
-* **待實現**: 1 題
+* **已完成**: 24 題
+* **待實現**: 0 題
 
 ## 執行測試
 
@@ -306,3 +306,12 @@ println!("Memory: {} bytes", metrics.memory_size);
 * 結果計算：問題用戶總數減去最多人已掌握的語言人數，即為需要教授的最少用戶數
 * 優化技巧：HashSet 提供 O(1) 查找，intersection() 高效計算集合交集，提前終止無問題用戶的情況
 * 時間複雜度：O(L + F×n + n×m)（L為語言條目數，F為友誼數，在題目限制下接近常數），空間複雜度：O(L + m)
+
+### Find the Number of Ways to Place People I (p3025)
+
+* 排序 + 掃描線優化：將點按 x 升序、x 相等時 y 降序排列，利用排序特性避免 O(n³) 的矩形內點檢查
+* 核心優化技巧：對每個左上角點，維護 max_y 變量記錄已找到的有效右下角點的最大 y 坐標
+* 智能剪枝：新的右下角點只有在 y 坐標大於 max_y 時才是有效的，避免被之前的點阻擋
+* 位置關係檢查：確保左上角點滿足 A.x ≤ B.x 且 A.y ≥ B.y 的約束條件（計算機座標系）
+* 算法正確性：通過排序保證 x 坐標關係，通過 max_y 隱式檢查矩形內無阻擋點
+* 時間複雜度：O(n²)（排序 O(n log n) + 雙重循環 O(n²)），空間複雜度：O(1)（原地排序，常數額外空間）
