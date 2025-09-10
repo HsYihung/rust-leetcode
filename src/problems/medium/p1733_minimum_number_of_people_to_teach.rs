@@ -43,12 +43,52 @@
 /// - 所有友誼關係對都是唯一的
 #[allow(dead_code)]
 impl Solution {
-    pub fn minimum_teachings(
-        _n: i32,
-        _languages: Vec<Vec<i32>>,
-        _friendships: Vec<Vec<i32>>,
-    ) -> i32 {
-        todo!("實現 Minimum Number of People to Teach 的解決方案 - 請先理解題目和測試案例")
+    pub fn minimum_teachings(_n: i32, languages: Vec<Vec<i32>>, friendships: Vec<Vec<i32>>) -> i32 {
+        use std::collections::{HashMap, HashSet};
+        let mut problem_users: HashSet<usize> = HashSet::new();
+
+        for friendship in friendships {
+            if friendship.len() < 2 {
+                continue;
+            }
+            let u_idx = (friendship[0] - 1) as usize;
+            let v_idx = (friendship[1] - 1) as usize;
+            let user_u_language = &languages[u_idx];
+            let user_v_language = &languages[v_idx];
+            let mut is_problem_user = true;
+
+            for language in user_u_language {
+                if user_v_language.contains(language) {
+                    is_problem_user = false;
+                    break;
+                }
+            }
+
+            if is_problem_user {
+                problem_users.insert(u_idx);
+                problem_users.insert(v_idx);
+            }
+        }
+
+        let mut language_count: HashMap<i32, i32> = HashMap::new();
+
+        for user in &problem_users {
+            let user_languages = &languages[*user];
+
+            for language in user_languages {
+                *language_count.entry(*language).or_insert(0) += 1;
+            }
+        }
+
+        let mut max_count = 0;
+
+        for (_k, v) in language_count {
+            if v > max_count {
+                max_count = v;
+            }
+        }
+
+        problem_users.len() as i32 - max_count
     }
 }
 
@@ -110,6 +150,8 @@ mod tests {
     #[test]
     fn test_corner_cases() {
         // 特殊情況：複雜的友誼網絡，但大部分已經能溝通
+        // 用戶1[1,2] 和 用戶2[1,2] 有共同語言1,2，用戶3[3] 和 用戶4[3] 有共同語言3
+        // 所有朋友對都能溝通，不需要教授任何人
         assert_eq!(
             Solution::minimum_teachings(
                 3,
@@ -119,7 +161,18 @@ mod tests {
             0
         );
 
-        // 特殊情況：所有用戶掌握多種語言但仍有無法溝通的對
+        // 特殊情況：所有用戶掌握多種語言但有無法溝通的對
+        // 用戶1[1,2] 用戶2[3,4] 用戶3[1,3] 用戶4[2,4]
+        // 分析所有友誼對：
+        // 1-2: [1,2] ∩ [3,4] = ∅ -> 問題用戶
+        // 1-3: [1,2] ∩ [1,3] = {1} -> 能溝通
+        // 1-4: [1,2] ∩ [2,4] = {2} -> 能溝通
+        // 2-3: [3,4] ∩ [1,3] = {3} -> 能溝通
+        // 2-4: [3,4] ∩ [2,4] = {4} -> 能溝通
+        // 3-4: [1,3] ∩ [2,4] = ∅ -> 問題用戶
+        // 問題用戶集合: {0,1,2,3} (所有4個用戶)
+        // 語言統計: 1->2人(用戶1,3), 2->2人(用戶1,4), 3->2人(用戶2,3), 4->2人(用戶2,4)
+        // 最大2人，答案: 4-2=2
         assert_eq!(
             Solution::minimum_teachings(
                 4,
@@ -133,7 +186,7 @@ mod tests {
                     vec![3, 4]
                 ]
             ),
-            0
+            2
         );
 
         // 特殊情況：需要教授給很多用戶的情況
