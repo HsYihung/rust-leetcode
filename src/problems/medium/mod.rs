@@ -3,6 +3,7 @@ pub mod p16_3sum_closest;
 pub mod p1733_minimum_number_of_people_to_teach;
 pub mod p2327_number_of_people_aware_of_a_secret;
 pub mod p2749_minimum_operations_to_make_the_integer_zero;
+pub mod p3025_find_the_number_of_ways_to_place_people_i;
 pub mod p3195_find_the_minimum_area_to_cover_all_ones_i;
 pub mod p3362_zero_array_transformation_iii;
 pub mod p498_diagonal_traverse;

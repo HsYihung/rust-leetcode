@@ -31,6 +31,7 @@ src/
     │   ├── p1504_count_submatrices_with_all_ones.rs
     │   ├── p1733_minimum_number_of_people_to_teach.rs
     │   ├── p2749_minimum_operations_to_make_the_integer_zero.rs
+    │   ├── p3025_find_the_number_of_ways_to_place_people_i.rs
     │   ├── p3195_find_the_minimum_area_to_cover_all_ones_i.rs
     │   └── p3362_zero_array_transformation_iii.rs
     └── hard/
@@ -68,6 +69,7 @@ src/
 | 1504 | [Count Submatrices With All Ones](src/problems/medium/p1504_count_submatrices_with_all_ones.rs) | 高度數組 + 直方圖遍歷 | O(nm²) 時間, O(m) 空間
 | 1733 | [Minimum Number of People to Teach](src/problems/medium/p1733_minimum_number_of_people_to_teach.rs) | 貪心算法 + 集合操作 | O(L + F×n + n×m) 時間, O(L + m) 空間 |
 | 2749 | [Minimum Operations to Make the Integer Zero](src/problems/medium/p2749_minimum_operations_to_make_the_integer_zero.rs) | 位操作 + 數學分析 | O(60) 時間, O(1) 空間
+| 3025 | [Find the Number of Ways to Place People I](src/problems/medium/p3025_find_the_number_of_ways_to_place_people_i.rs) | 待實現 | - |
 | 3195 | [Find the Minimum Area to Cover All Ones I](src/problems/medium/p3195_find_the_minimum_area_to_cover_all_ones_i.rs) | 邊界框算法 | O(mn) 時間, O(1) 空間
 | 3362 | [Zero Array Transformation III](src/problems/medium/p3362_zero_array_transformation_iii.rs) | 貪心 + 優先隊列 | O(n log n) 時間, O(n) 空間
 
@@ -80,12 +82,12 @@ src/
 
 ## 統計
 
-* **總題目數**: 23
+* **總題目數**: 24
 * **Easy**: 9 題
-* **Medium**: 12 題  
+* **Medium**: 13 題  
 * **Hard**: 2 題
 * **已完成**: 23 題
-* **待實現**: 0 題
+* **待實現**: 1 題
 
 ## 執行測試
 
