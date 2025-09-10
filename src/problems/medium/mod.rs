@@ -1,5 +1,6 @@
 pub mod p1504_count_submatrices_with_all_ones;
 pub mod p16_3sum_closest;
+pub mod p1733_minimum_number_of_people_to_teach;
 pub mod p2327_number_of_people_aware_of_a_secret;
 pub mod p2749_minimum_operations_to_make_the_integer_zero;
 pub mod p3195_find_the_minimum_area_to_cover_all_ones_i;
