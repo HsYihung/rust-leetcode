@@ -69,7 +69,7 @@ src/
 | 1504 | [Count Submatrices With All Ones](src/problems/medium/p1504_count_submatrices_with_all_ones.rs) | 高度數組 + 直方圖遍歷 | O(nm²) 時間, O(m) 空間
 | 1733 | [Minimum Number of People to Teach](src/problems/medium/p1733_minimum_number_of_people_to_teach.rs) | 貪心算法 + 集合操作 | O(L + F×n + n×m) 時間, O(L + m) 空間 |
 | 2749 | [Minimum Operations to Make the Integer Zero](src/problems/medium/p2749_minimum_operations_to_make_the_integer_zero.rs) | 位操作 + 數學分析 | O(60) 時間, O(1) 空間
-| 2785 | [Sort Vowels in a String](src/problems/medium/p2785_sort_vowels_in_a_string.rs) | 待實現 | - |
+| 2785 | [Sort Vowels in a String](src/problems/medium/p2785_sort_vowels_in_a_string.rs) | 函數式編程 + 迭代器 | O(n + v log v) 時間, O(v) 空間 |
 | 3025 | [Find the Number of Ways to Place People I](src/problems/medium/p3025_find_the_number_of_ways_to_place_people_i.rs) | 排序 + 掃描線優化 | O(n²) 時間, O(1) 空間 |
 | 3195 | [Find the Minimum Area to Cover All Ones I](src/problems/medium/p3195_find_the_minimum_area_to_cover_all_ones_i.rs) | 邊界框算法 | O(mn) 時間, O(1) 空間
 | 3362 | [Zero Array Transformation III](src/problems/medium/p3362_zero_array_transformation_iii.rs) | 貪心 + 優先隊列 | O(n log n) 時間, O(n) 空間
@@ -87,8 +87,8 @@ src/
 * **Easy**: 9 題
 * **Medium**: 14 題  
 * **Hard**: 2 題
-* **已完成**: 24 題
-* **待實現**: 1 題
+* **已完成**: 25 題
+* **待實現**: 0 題
 
 ## 執行測試
 
@@ -316,3 +316,12 @@ println!("Memory: {} bytes", metrics.memory_size);
 * 位置關係檢查：確保左上角點滿足 A.x ≤ B.x 且 A.y ≥ B.y 的約束條件（計算機座標系）
 * 算法正確性：通過排序保證 x 坐標關係，通過 max_y 隱式檢查矩形內無阻擋點
 * 時間複雜度：O(n²)（排序 O(n log n) + 雙重循環 O(n²)），空間複雜度：O(1)（原地排序，常數額外空間）
+
+### Sort Vowels in a String (p2785)
+
+* 函數式編程 + 迭代器狀態管理：使用三步驟策略（提取、排序、重建）優雅處理母音字母排序問題
+* 核心技術選擇：使用 matches! 宏進行高效母音檢測，sort_unstable() 實現快速排序，迭代器自動管理狀態
+* 算法步驟：先用 filter() 提取所有母音字母，按 ASCII 值排序，再用 map() 重建字符串
+* 迭代器優化：利用 into_iter() 創建消耗型迭代器，每次遇到母音位置時自動取出下一個排序後的母音
+* 內存效率：只存儲必要的母音字母而非整個字符串，空間使用最優化
+* 時間複雜度：O(n + v log v)（字符串遍歷 + 母音排序），空間複雜度：O(v)（僅存儲母音字母）

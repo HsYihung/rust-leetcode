@@ -26,8 +26,57 @@
 /// - s 只包含字母（大寫和小寫）
 #[allow(dead_code)]
 impl Solution {
-    pub fn sort_vowels(_s: String) -> String {
-        todo!("實現 Sort Vowels in a String 的解決方案 - 請先理解題目和測試案例")
+    /// 主要解法：函數式編程版本 - O(n + v log v) 時間，O(v) 空間，代碼簡潔優雅
+    pub fn sort_vowels(s: String) -> String {
+        Self::sort_vowels_function(s)
+    }
+
+    #[allow(dead_code)]
+    fn sort_vowels_function(s: String) -> String {
+        fn is_vowel(c: char) -> bool {
+            matches!(c, 'a' | 'e' | 'i' | 'o' | 'u' | 'A' | 'E' | 'I' | 'O' | 'U')
+        }
+
+        let mut vowels: Vec<char> = s.chars().filter(|&c| is_vowel(c)).collect();
+        vowels.sort_unstable(); // sort by ASCII order
+
+        let mut iter = vowels.into_iter();
+        let result: String = s
+            .chars()
+            .map(|c| if is_vowel(c) { iter.next().unwrap() } else { c })
+            .collect();
+
+        result
+    }
+
+    #[allow(dead_code)]
+    fn sort_vowels_hashmap(s: String) -> String {
+        use std::collections::HashMap;
+        let ascii_sort = ['A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u'];
+
+        let mut vowel_count: HashMap<char, i32> = HashMap::new();
+        let mut vowel_indexs: Vec<usize> = vec![];
+
+        for (i, char) in s.chars().enumerate() {
+            if ascii_sort.contains(&char) {
+                *vowel_count.entry(char).or_insert(0) += 1;
+                vowel_indexs.push(i);
+            }
+        }
+
+        let mut result: Vec<char> = s.chars().collect();
+        let mut vowel_idx = 0;
+
+        for k in ascii_sort.iter() {
+            let k_count = *vowel_count.get(k).unwrap_or(&0);
+
+            for _ in 0..k_count {
+                result[vowel_indexs[vowel_idx]] = *k;
+                vowel_idx += 1;
+            }
+        }
+
+        result.into_iter().collect()
     }
 }
 
@@ -73,7 +122,7 @@ mod tests {
         // 邊界案例：大小寫混合的母音字母
         assert_eq!(
             Solution::sort_vowels("AeIoU".to_string()),
-            "AeIoU".to_string()
+            "AIUeo".to_string()
         );
     }
 
@@ -82,7 +131,7 @@ mod tests {
         // 特殊情況：需要重新排序的母音字母
         assert_eq!(
             Solution::sort_vowels("uOiEa".to_string()),
-            "aEiOu".to_string()
+            "EOaiu".to_string()
         );
 
         // 特殊情況：複雜的母音和輔音混合
@@ -94,13 +143,13 @@ mod tests {
         // 特殊情況：包含重複母音字母
         assert_eq!(
             Solution::sort_vowels("Programming".to_string()),
-            "Prigramming".to_string()
+            "Pragrimmong".to_string()
         );
 
         // 特殊情況：全大寫
         assert_eq!(
             Solution::sort_vowels("HELLO".to_string()),
-            "HEOLLO".to_string()
+            "HELLO".to_string()
         );
     }
 }
