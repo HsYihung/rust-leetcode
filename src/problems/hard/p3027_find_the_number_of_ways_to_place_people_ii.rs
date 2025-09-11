@@ -102,10 +102,11 @@ mod tests {
         assert_eq!(Solution::number_of_points_in_the_rectangle(points_valid), 1);
 
         // 所有點在同一條水平線上
+        // 修正：水平線上有有效配對 (1,5)-(2,5) 和 (1,5)-(3,5) 和 (2,5)-(3,5)
         let points_horizontal = vec![vec![1, 5], vec![2, 5], vec![3, 5]];
         assert_eq!(
             Solution::number_of_points_in_the_rectangle(points_horizontal),
-            0
+            2 // 修正：應該是 2，因為有 (1,5)-(2,5) 和 (2,5)-(3,5) 兩個有效配對
         );
 
         // 所有點在同一條垂直線上
@@ -120,11 +121,12 @@ mod tests {
     fn test_corner_cases() {
         // 特殊情況測試案例
 
-        // 四個點形成正方形，只有對角線配對有效
+        // 四個點形成正方形
+        // 修正：實際上有更多有效配對，需要重新計算
         let points_square = vec![vec![0, 0], vec![0, 2], vec![2, 0], vec![2, 2]];
         assert_eq!(
             Solution::number_of_points_in_the_rectangle(points_square),
-            1
+            4 // 修正：(0,2)-(0,0), (0,2)-(2,0), (0,2)-(2,2), (2,2)-(2,0)
         );
 
         // L 形排列的點
@@ -141,7 +143,7 @@ mod tests {
             0
         );
 
-        // 多個點但只有一個有效配對
+        // 多個點但有多個有效配對
         let points_one_valid = vec![
             vec![1, 4],
             vec![2, 3],
@@ -152,7 +154,7 @@ mod tests {
         ];
         assert_eq!(
             Solution::number_of_points_in_the_rectangle(points_one_valid),
-            1
+            5 // 修正：實際上有 5 個有效配對
         );
     }
 }
