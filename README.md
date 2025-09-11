@@ -36,7 +36,8 @@ src/
     │   └── p3362_zero_array_transformation_iii.rs
     └── hard/
         ├── p44_wildcard_matching.rs
-        └── p679_24_game.rs
+        ├── p679_24_game.rs
+        └── p3027_find_the_number_of_ways_to_place_people_ii.rs
 ```
 
 ## 題目列表
@@ -76,19 +77,20 @@ src/
 
 ### Hard
 
-| #   | 題目 | 解法 | 備註 |
-|-----|------|------|------|
-| 44  | [Wildcard Matching](src/problems/hard/p44_wildcard_matching.rs) | 動態規劃 | O(mn) 時間, O(mn) 空間 |
-| 679 | [24 Game](src/problems/hard/p679_24_game.rs) | 回溯算法 | O(4^4 * 4!) 時間複雜度 |
+| #    | 題目 | 解法 | 備註 |
+|------|------|------|------|
+| 44   | [Wildcard Matching](src/problems/hard/p44_wildcard_matching.rs) | 動態規劃 | O(mn) 時間, O(mn) 空間 |
+| 679  | [24 Game](src/problems/hard/p679_24_game.rs) | 回溯算法 | O(4^4 * 4!) 時間複雜度 |
+| 3027 | [Find the Number of Ways to Place People II](src/problems/hard/p3027_find_the_number_of_ways_to_place_people_ii.rs) | 待實現 | 幾何 + 枚舉 |
 
 ## 統計
 
-* **總題目數**: 25
+* **總題目數**: 26
 * **Easy**: 9 題
 * **Medium**: 14 題  
-* **Hard**: 2 題
+* **Hard**: 3 題
 * **已完成**: 25 題
-* **待實現**: 0 題
+* **待實現**: 1 題
 
 ## 執行測試
 
