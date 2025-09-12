@@ -33,6 +33,7 @@ src/
     │   ├── p2749_minimum_operations_to_make_the_integer_zero.rs
     │   ├── p3025_find_the_number_of_ways_to_place_people_i.rs
     │   ├── p3195_find_the_minimum_area_to_cover_all_ones_i.rs
+    │   ├── p3227_vowels_game_in_a_string.rs
     │   └── p3362_zero_array_transformation_iii.rs
     └── hard/
         ├── p44_wildcard_matching.rs
@@ -72,7 +73,8 @@ src/
 | 2749 | [Minimum Operations to Make the Integer Zero](src/problems/medium/p2749_minimum_operations_to_make_the_integer_zero.rs) | 位操作 + 數學分析 | O(60) 時間, O(1) 空間
 | 2785 | [Sort Vowels in a String](src/problems/medium/p2785_sort_vowels_in_a_string.rs) | 函數式編程 + 迭代器 | O(n + v log v) 時間, O(v) 空間 |
 | 3025 | [Find the Number of Ways to Place People I](src/problems/medium/p3025_find_the_number_of_ways_to_place_people_i.rs) | 排序 + 掃描線優化 | O(n²) 時間, O(1) 空間 |
-| 3195 | [Find the Minimum Area to Cover All Ones I](src/problems/medium/p3195_find_the_minimum_area_to_cover_all_ones_i.rs) | 邊界框算法 | O(mn) 時間, O(1) 空間
+| 3195 | [Find the Minimum Area to Cover All Ones I](src/problems/medium/p3195_find_the_minimum_area_to_cover_all_ones_i.rs) | 邊界框算法 | O(mn) 時間, O(1) 空間 |
+| 3227 | [Vowels Game in a String](src/problems/medium/p3227_vowels_game_in_a_string.rs) | 待實現 | 腦筋急轉彎 + 博弈論 |
 | 3362 | [Zero Array Transformation III](src/problems/medium/p3362_zero_array_transformation_iii.rs) | 貪心 + 優先隊列 | O(n log n) 時間, O(n) 空間
 
 ### Hard
@@ -85,12 +87,12 @@ src/
 
 ## 統計
 
-* **總題目數**: 26
+* **總題目數**: 27
 * **Easy**: 9 題
-* **Medium**: 14 題  
+* **Medium**: 15 題  
 * **Hard**: 3 題
 * **已完成**: 25 題
-* **待實現**: 1 題
+* **待實現**: 2 題
 
 ## 執行測試
 

@@ -6,6 +6,7 @@ pub mod p2749_minimum_operations_to_make_the_integer_zero;
 pub mod p2785_sort_vowels_in_a_string;
 pub mod p3025_find_the_number_of_ways_to_place_people_i;
 pub mod p3195_find_the_minimum_area_to_cover_all_ones_i;
+pub mod p3227_vowels_game_in_a_string;
 pub mod p3362_zero_array_transformation_iii;
 pub mod p498_diagonal_traverse;
 pub mod p62_unique_paths;
