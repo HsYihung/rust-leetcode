@@ -74,7 +74,7 @@ src/
 | 2785 | [Sort Vowels in a String](src/problems/medium/p2785_sort_vowels_in_a_string.rs) | 函數式編程 + 迭代器 | O(n + v log v) 時間, O(v) 空間 |
 | 3025 | [Find the Number of Ways to Place People I](src/problems/medium/p3025_find_the_number_of_ways_to_place_people_i.rs) | 排序 + 掃描線優化 | O(n²) 時間, O(1) 空間 |
 | 3195 | [Find the Minimum Area to Cover All Ones I](src/problems/medium/p3195_find_the_minimum_area_to_cover_all_ones_i.rs) | 邊界框算法 | O(mn) 時間, O(1) 空間 |
-| 3227 | [Vowels Game in a String](src/problems/medium/p3227_vowels_game_in_a_string.rs) | 待實現 | 腦筋急轉彎 + 博弈論 |
+| 3227 | [Vowels Game in a String](src/problems/medium/p3227_vowels_game_in_a_string.rs) | 查表法 + 提前終止 | O(n) 時間, O(1) 空間 |
 | 3362 | [Zero Array Transformation III](src/problems/medium/p3362_zero_array_transformation_iii.rs) | 貪心 + 優先隊列 | O(n log n) 時間, O(n) 空間
 
 ### Hard
@@ -91,8 +91,8 @@ src/
 * **Easy**: 9 題
 * **Medium**: 15 題  
 * **Hard**: 3 題
-* **已完成**: 25 題
-* **待實現**: 2 題
+* **已完成**: 26 題
+* **待實現**: 1 題
 
 ## 執行測試
 
@@ -329,3 +329,12 @@ println!("Memory: {} bytes", metrics.memory_size);
 * 迭代器優化：利用 into_iter() 創建消耗型迭代器，每次遇到母音位置時自動取出下一個排序後的母音
 * 內存效率：只存儲必要的母音字母而非整個字符串，空間使用最優化
 * 時間複雜度：O(n + v log v)（字符串遍歷 + 母音排序），空間複雜度：O(v)（僅存儲母音字母）
+
+### Vowels Game in a String (p3227)
+
+* 查表法 + 博弈論分析：通過預計算查找表實現 O(1) 母音檢測，結合博弈論分析得出核心規律
+* 核心洞察：Alice 獲勝當且僅當字符串包含至少一個母音，這是博弈論分析的關鍵結果
+* 查表優化：使用編譯時常數數組 VOWELS[256] 預存所有字符的母音標記，避免運行時比較操作
+* 提前終止機制：一旦找到第一個母音立即返回 true，平均情況下只需檢查一半字符
+* 博弈分析：無母音時 Alice 無法移動；有母音時 Alice 總能通過策略性移除獲勝
+* 時間複雜度：O(n) 最壞情況，O(1) 最佳情況，空間複雜度：O(1)（常數查找表）
