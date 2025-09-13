@@ -42,8 +42,19 @@
 /// - s 只包含小寫英文字母
 #[allow(dead_code)]
 impl Solution {
-    pub fn max_vowel_consonant_freq(_s: String) -> i32 {
-        todo!("實現 Find Most Frequent Vowel and Consonant 的解決方案 - 請先理解題目和測試案例")
+    pub fn max_freq_sum(s: String) -> i32 {
+        let mut vowel_freq = [0; 26];
+        let mut consonant_freq = [0; 26];
+
+        for char in s.bytes() {
+            if matches!(char, b'a' | b'e' | b'i' | b'o' | b'u') {
+                vowel_freq[(char - b'a') as usize] += 1;
+            } else {
+                consonant_freq[(char - b'a') as usize] += 1;
+            }
+        }
+
+        vowel_freq.into_iter().max().unwrap_or(0) + consonant_freq.into_iter().max().unwrap_or(0)
     }
 }
 
@@ -59,16 +70,13 @@ mod tests {
         // 基本測試案例 - 來自題目示例
 
         // 示例 1：包含母音和子音的一般情況
-        assert_eq!(
-            Solution::max_vowel_consonant_freq("successes".to_string()),
-            6
-        );
+        assert_eq!(Solution::max_freq_sum("successes".to_string()), 6);
 
         // 示例 2：只包含母音
-        assert_eq!(Solution::max_vowel_consonant_freq("aeiaeia".to_string()), 3);
+        assert_eq!(Solution::max_freq_sum("aeiaeia".to_string()), 3);
 
         // 示例 3：只包含子音
-        assert_eq!(Solution::max_vowel_consonant_freq("bcdfg".to_string()), 1);
+        assert_eq!(Solution::max_freq_sum("bcdfg".to_string()), 1);
     }
 
     #[test]
@@ -76,23 +84,23 @@ mod tests {
         // 邊界測試案例
 
         // 單個母音字母
-        assert_eq!(Solution::max_vowel_consonant_freq("a".to_string()), 1);
+        assert_eq!(Solution::max_freq_sum("a".to_string()), 1);
 
         // 單個子音字母
-        assert_eq!(Solution::max_vowel_consonant_freq("b".to_string()), 1);
+        assert_eq!(Solution::max_freq_sum("b".to_string()), 1);
 
         // 所有相同的母音字母
-        assert_eq!(Solution::max_vowel_consonant_freq("aaaa".to_string()), 4);
+        assert_eq!(Solution::max_freq_sum("aaaa".to_string()), 4);
 
         // 所有相同的子音字母
-        assert_eq!(Solution::max_vowel_consonant_freq("bbbb".to_string()), 4);
+        assert_eq!(Solution::max_freq_sum("bbbb".to_string()), 4);
 
         // 最長字符串測試（理論上）
         let long_vowels = "a".repeat(100000);
-        assert_eq!(Solution::max_vowel_consonant_freq(long_vowels), 100000);
+        assert_eq!(Solution::max_freq_sum(long_vowels), 100000);
 
         let long_consonants = "b".repeat(100000);
-        assert_eq!(Solution::max_vowel_consonant_freq(long_consonants), 100000);
+        assert_eq!(Solution::max_freq_sum(long_consonants), 100000);
     }
 
     #[test]
@@ -100,32 +108,26 @@ mod tests {
         // 特殊情況測試案例
 
         // 交替的母音和子音
-        assert_eq!(Solution::max_vowel_consonant_freq("abab".to_string()), 4); // a=2, b=2
-        assert_eq!(Solution::max_vowel_consonant_freq("ababab".to_string()), 6); // a=3, b=3
+        assert_eq!(Solution::max_freq_sum("abab".to_string()), 4); // a=2, b=2
+        assert_eq!(Solution::max_freq_sum("ababab".to_string()), 6); // a=3, b=3
 
         // 多個母音，一個子音
-        assert_eq!(Solution::max_vowel_consonant_freq("aeioux".to_string()), 2); // max vowel=1, consonant=1
+        assert_eq!(Solution::max_freq_sum("aeioux".to_string()), 2); // max vowel=1, consonant=1
 
         // 一個母音，多個子音
-        assert_eq!(Solution::max_vowel_consonant_freq("abcdefg".to_string()), 2); // vowel=1, max consonant=1
+        assert_eq!(Solution::max_freq_sum("abcdefg".to_string()), 2); // vowel=1, max consonant=1
 
         // 包含所有母音
-        assert_eq!(Solution::max_vowel_consonant_freq("aeiou".to_string()), 1); // all vowels freq=1, no consonants
+        assert_eq!(Solution::max_freq_sum("aeiou".to_string()), 1); // all vowels freq=1, no consonants
 
         // 複雜的混合情況
-        assert_eq!(
-            Solution::max_vowel_consonant_freq("programming".to_string()),
-            4
-        ); // a=1,i=1,o=1 max=1; m=2,g=2,r=2 max=2, total=3
-        assert_eq!(Solution::max_vowel_consonant_freq("hello".to_string()), 3); // e=1,o=1 max=1; l=2 max=2, total=3
+        assert_eq!(Solution::max_freq_sum("programming".to_string()), 3); // a=1,i=1,o=1 max=1; m=2,g=2,r=2 max=2, total=3
+        assert_eq!(Solution::max_freq_sum("hello".to_string()), 3); // e=1,o=1 max=1; l=2 max=2, total=3
 
         // 邊界情況：母音和子音頻率相等
-        assert_eq!(Solution::max_vowel_consonant_freq("aabb".to_string()), 4); // a=2, b=2
+        assert_eq!(Solution::max_freq_sum("aabb".to_string()), 4); // a=2, b=2
 
         // 大量重複字母
-        assert_eq!(
-            Solution::max_vowel_consonant_freq("aaabbbccceeefff".to_string()),
-            6
-        ); // e=3, f=3
+        assert_eq!(Solution::max_freq_sum("aaabbbccceeefff".to_string()), 6); // e=3, f=3
     }
 }

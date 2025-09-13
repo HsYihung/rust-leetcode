@@ -57,7 +57,7 @@ src/
 | 1800 | [Maximum Ascending Subarray Sum](src/problems/easy/p1800_maximum_ascending_subarray_sum.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
 | 3174 | [Clear Digits](src/problems/easy/p3174_clear_digits.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
 | 3516 | [Find Closest Person](src/problems/easy/p3516_find_closest_person.rs) | 距離比較 | O(1) 時間, O(1) 空間 |
-| 3541 | [Find Most Frequent Vowel and Consonant](src/problems/easy/p3541_find_most_frequent_vowel_and_consonant.rs) | 待實現 | 頻率統計 + HashMap |
+| 3541 | [Find Most Frequent Vowel and Consonant](src/problems/easy/p3541_find_most_frequent_vowel_and_consonant.rs) | 陣列計數法 | O(n) 時間, O(1) 空間 |
 
 ### Medium
 
@@ -93,8 +93,8 @@ src/
 * **Easy**: 10 題
 * **Medium**: 15 題  
 * **Hard**: 3 題
-* **已完成**: 26 題
-* **待實現**: 2 題
+* **已完成**: 27 題
+* **待實現**: 1 題
 
 ## 執行測試
 
@@ -340,3 +340,13 @@ println!("Memory: {} bytes", metrics.memory_size);
 * 提前終止機制：一旦找到第一個母音立即返回 true，平均情況下只需檢查一半字符
 * 博弈分析：無母音時 Alice 無法移動；有母音時 Alice 總能通過策略性移除獲勝
 * 時間複雜度：O(n) 最壞情況，O(1) 最佳情況，空間複雜度：O(1)（常數查找表）
+
+### Find Most Frequent Vowel and Consonant (p3541)
+
+* 陣列計數法 + 字節處理優化：使用固定大小陣列進行字符頻率統計，避免 HashMap 的動態分配開銷
+* 核心策略：分離統計母音和子音頻率，各自維護獨立的 26 元素陣列進行計數
+* 字節級處理：使用 `s.bytes()` 直接處理字節，避免 UTF-8 字符解碼的額外開銷
+* 索引映射優化：通過 `(char - b'a') as usize` 將字符直接映射到陣列索引，實現 O(1) 訪問
+* 最大值查找：利用 `into_iter().max().unwrap_or(0)` 高效找出各類別的最大頻率
+* 緩存友好：連續的陣列訪問模式提供更好的緩存局部性，優於 HashMap 的散列訪問
+* 時間複雜度：O(n)（字符串遍歷），空間複雜度：O(1)（固定大小陣列）
