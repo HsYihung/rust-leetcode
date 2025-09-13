@@ -19,7 +19,8 @@ src/
     │   ├── p1800_maximum_ascending_subarray_sum.rs
     │   ├── p1317_convert_integer_to_the_sum_of_two_no_zero_integers.rs
     │   ├── p3174_clear_digits.rs
-    │   └── p3516_find_closest_person.rs
+    │   ├── p3516_find_closest_person.rs
+    │   └── p3541_find_most_frequent_vowel_and_consonant.rs
     ├── medium/
     │   ├── p8_string_to_integer_atoi_.rs
     │   ├── p16_3sum_closest.rs
@@ -56,6 +57,7 @@ src/
 | 1800 | [Maximum Ascending Subarray Sum](src/problems/easy/p1800_maximum_ascending_subarray_sum.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
 | 3174 | [Clear Digits](src/problems/easy/p3174_clear_digits.rs) | 一次遍歷 | O(n) 時間, O(1) 空間 |
 | 3516 | [Find Closest Person](src/problems/easy/p3516_find_closest_person.rs) | 距離比較 | O(1) 時間, O(1) 空間 |
+| 3541 | [Find Most Frequent Vowel and Consonant](src/problems/easy/p3541_find_most_frequent_vowel_and_consonant.rs) | 待實現 | 頻率統計 + HashMap |
 
 ### Medium
 
@@ -87,12 +89,12 @@ src/
 
 ## 統計
 
-* **總題目數**: 27
-* **Easy**: 9 題
+* **總題目數**: 28
+* **Easy**: 10 題
 * **Medium**: 15 題  
 * **Hard**: 3 題
 * **已完成**: 26 題
-* **待實現**: 1 題
+* **待實現**: 2 題
 
 ## 執行測試
 

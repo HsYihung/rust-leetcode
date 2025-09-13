@@ -5,5 +5,6 @@ pub mod p1800_maximum_ascending_subarray_sum;
 pub mod p3174_clear_digits;
 pub mod p338_counting_bits;
 pub mod p3516_find_closest_person;
+pub mod p3541_find_most_frequent_vowel_and_consonant;
 pub mod p392_is_subsequence;
 pub mod p509_fibonacci_number;
